@@ -12,4 +12,4 @@ This configuration is base on [LazyVim](lazyvim.org) with some modify.
 
 ![](/images/cover.png)
 ![](/images/lazy-nvim.png)
-![](/images/sont-1.png)
+![](/images/shot-1.png)
