@@ -4,7 +4,7 @@ If you want to use any configuration of this repo, please replace files/folders 
 
 # tmux & zsh
 
-These are a minimal setting configuration.
+These are minimal setting configuration.
 
 # nvim
 
