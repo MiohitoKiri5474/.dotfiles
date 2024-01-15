@@ -123,7 +123,6 @@ return {
 			}
 		end,
 	},
-
 	{
 		"nvimdev/dashboard-nvim",
 		event = "VimEnter",
