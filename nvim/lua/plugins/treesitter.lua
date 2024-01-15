@@ -18,6 +18,7 @@ return {
 				"sql",
 				"svelte",
 				"fish",
+				"python",
 			},
 		},
 		confirg = function(_, opts)

@@ -1,16 +1,30 @@
 return {
 	{
 		"williamboman/mason.nvim",
-		opts = function(_, opts)
-			vim.list_extend(opts.ensure_installed, {
-				"stylua",
-				"clangd",
-				"shfmt",
-				"black",
-				"isort",
-				"pylint",
-				"css-lsp",
+
+		dependencies = {
+			"williamboman/mason-lspconfig.nvim",
+		},
+		config = function()
+			local mason = require("mason")
+			local mason_lspconfig = require("mason-lspconfig")
+
+			mason.setup({
+				ui = {
+					icons = {
+						server_installed = "✓",
+						server_pending = "➜",
+						server_uninstalled = "✗",
+					},
+				},
 			})
+			mason_lspconfig.setup({
+				ensure_installed = { "lua_ls", "rust_analyzer", "clangd", "pyright", "gopls" },
+				automatic_installation = true,
+			})
+		end,
+		opts = function(_, opts)
+			table.insert(opts.ensure_installed, "black")
 		end,
 	},
 	{
@@ -31,4 +45,17 @@ return {
 		end,
 	},
 	"nvim-lua/lsp-status.nvim",
+	{
+		"nvimtools/none-ls.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			local null_ls = require("null-ls")
+
+			null_ls.setup({
+				sources = {
+					null_ls.builtins.formatting.black,
+				},
+			})
+		end,
+	},
 }
