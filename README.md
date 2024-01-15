@@ -48,7 +48,14 @@ brew bundle --file ~/myFolder/Brewfile
 git clone https://github.com/MiohitoKiri5474/.dotfiles.git
 ```
 
-4. Use `stow` to deploy all config files.
+4. Install `.oh-my-zsh` for zsh, `tpm` for tmux
+
+```sh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
+
+5. Use `stow` to deploy all config files.
 
 ```sh
 cd .dotfiles
