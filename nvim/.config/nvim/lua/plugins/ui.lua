@@ -89,15 +89,10 @@ return {
 					end
 					return msg
 				end,
-				icon = " LSP:",
+				icon = " ",
 			}
 
 			local config = {
-				options = {
-					component_separators = { left = "", right = "" },
-					section_separators = { left = "", right = "" },
-					globalstatus = true,
-				},
 				sections = {
 					lualine_a = { "mode" },
 					lualine_b = { "branch" },
