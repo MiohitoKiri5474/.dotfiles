@@ -16,21 +16,33 @@ This configuration is base on [LazyVim](lazyvim.org) with some modify.
 ![](/images/shot-1.png)
 ![](/images/shot-2.png)
 
-## Usage
+## Requirements
 
-1. Install HomeBrew first. [Install HomeBrew](https://brew.sh/)
+- Neovim >= **0.9.0** (needs to be built with **LuaJIT**)
+- Git >= **2.19.0** (for partial clones support)
+- [LazyVim](https://www.lazyvim.org/)
+- a [Nerd Font](https://www.nerdfonts.com/)(v3.0 or greater) **_(optional, but needed to display some icons)_**
+  I'm using SauceCode Pro.
+- a **C** compiler for `nvim-treesitter`. [More information](https://github.com/nvim-treesitter/nvim-treesitter#requirements)
+- for [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) **_(optional)_**
+  - **live grep**: [ripgrep](https://github.com/BurntSushi/ripgrep)
+  - **find files**: [fd](https://github.com/sharkdp/fd)
+
+## Usage (for macOS)
+
+1. Install HomeBrew.
 
 ```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-2. Install package with brew.
+2. Install packages with brew.
 
 ```sh
 brew bundle --file ~/myFolder/Brewfile
 ```
 
-3. Clone dotfiles into localhost.
+3. Clone dotfiles into home folder at localhost.
 
 ```sh
 git clone https://github.com/MiohitoKiri5474/.dotfiles.git
