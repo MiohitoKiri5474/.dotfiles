@@ -22,15 +22,6 @@ return {
 		},
 	},
 	{
-		"nvim-lualine/lualine.nvim",
-		event = "VeryLazy",
-		opts = {
-			options = {
-				theme = "solarized_dark",
-			},
-		},
-	},
-	{
 		"b0o/incline.nvim",
 		dependencies = { "craftzdog/solarized-osaka.nvim" },
 		event = "BufReadPre",
@@ -60,8 +51,6 @@ return {
 			})
 		end,
 	},
-
-	-- bufferline
 	{
 		"akinsho/bufferline.nvim",
 		keys = {
@@ -76,16 +65,59 @@ return {
 			},
 		},
 	},
-
-	-- status line
 	{
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
-		opts = {
-			options = {
-				theme = "solarized_dark",
-			},
-		},
+		dependencies = { "craftzdog/solarized-osaka.nvim" },
+		priority = 1100,
+		config = function()
+			local lualine = require("lualine")
+
+			local lsp = {
+				function()
+					local msg = "No Active Lsp"
+					local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+					local clients = vim.lsp.get_active_clients()
+					if next(clients) == nil then
+						return msg
+					end
+					for _, client in ipairs(clients) do
+						local filetypes = client.config.filetypes
+						if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+							return client.name
+						end
+					end
+					return msg
+				end,
+				icon = " LSP:",
+			}
+
+			local config = {
+				options = {
+					component_separators = { left = "", right = "" },
+					section_separators = { left = "", right = "" },
+					globalstatus = true,
+				},
+				sections = {
+					lualine_a = { "mode" },
+					lualine_b = { "branch" },
+					lualine_c = { { "diff" }, "filename", "diagnostics" },
+					lualine_x = { lsp, "filetype" },
+					lualine_y = { "location", "progress" },
+					lualine_z = {},
+				},
+				inactive_sections = {
+					lualine_a = {},
+					lualine_b = {},
+					lualine_c = {},
+					lualine_x = {},
+					lualine_y = {},
+					lualine_z = {},
+				},
+			}
+
+			lualine.setup(config)
+		end,
 	},
 	{
 		"echasnovski/mini.animate",
