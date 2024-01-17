@@ -126,4 +126,5 @@ export NVM_DIR="$HOME/.nvm"
 alias "vim"="nvim"
 alias "ls"="exa"
 alias "dailyUpdate"="brew update && brew upgrade"
+alias "htop"="sudo glances"
 
