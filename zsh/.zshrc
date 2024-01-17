@@ -128,3 +128,5 @@ alias "ls"="exa"
 alias "dailyUpdate"="brew update && brew upgrade"
 alias "htop"="sudo glances"
 
+
+eval $(thefuck --alias)
