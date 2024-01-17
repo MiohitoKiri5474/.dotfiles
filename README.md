@@ -68,7 +68,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
 ```sh
 cd .dotfiles
-stow */
+stow zsh nvim tmux
 ```
 
 5. Replace iTerm2 colorscheme with [Solarized](https://github.com/altercation/solarized)
