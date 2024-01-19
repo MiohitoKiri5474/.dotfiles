@@ -24,18 +24,26 @@ return {
 			})
 		end,
 		opts = function(_, opts)
-			table.insert(opts.ensure_installed, "black")
+			table.insert(opts.ensure_installed, { "black", "clang-format", "isort" })
 		end,
 	},
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			require("lspconfig")
-			require("lspconfig").lua_ls.setup({})
-			require("lspconfig").pyright.setup({})
-			require("lspconfig").gopls.setup({})
-			require("lspconfig").clangd.setup({})
-			require("lspconfig").rust_analyzer.setup({
+			local lspconfig = require("lspconfig")
+			lspconfig.lua_ls.setup({})
+			lspconfig.pyright.setup({})
+			lspconfig.gopls.setup({})
+			lspconfig.clangd.setup({
+				cmd = {
+					"clangd",
+				},
+				capabilities = vim.lsp.protocol.make_client_capabilities(),
+				on_attach = function(client, bufnr)
+					require("nvim-navic").attach(client, bufnr)
+				end,
+			})
+			lspconfig.rust_analyzer.setup({
 				-- Server-specific settings. See `:help lspconfig-setup`
 				settings = {
 					["rust-analyzer"] = {},
@@ -55,6 +63,18 @@ return {
 					null_ls.builtins.formatting.black,
 				},
 			})
+			-- null_ls.formatters.setup({
+			-- 	{
+			-- 		name = "black",
+			-- 		args = { "--line-length", "120" },
+			-- 	},
+			-- 	{ name = "isort" },
+			-- 	{
+			-- 		name = "clang_format",
+			-- 		timeout = 10000,
+			-- 		filetypes = { "c", "cpp", "objc", "objcpp", "java" },
+			-- 	},
+			-- })
 		end,
 	},
 }

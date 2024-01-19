@@ -5,6 +5,7 @@ return {
 			ensure_installed = {
 				"astro",
 				"cmake",
+				"c",
 				"cpp",
 				"css",
 				"gitignore",
