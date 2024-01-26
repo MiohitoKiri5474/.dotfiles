@@ -118,6 +118,8 @@ brew "imagemagick"
 brew "ipmitool"
 # CLI for the Jinja2 templating language
 brew "jinja2-cli"
+# Simple terminal UI for git commands
+brew "lazygit"
 # Library for storing/retrieving passwords and other secrets
 brew "libsecret"
 # Language Server for the Lua language
