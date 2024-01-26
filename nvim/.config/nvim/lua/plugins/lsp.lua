@@ -19,7 +19,7 @@ return {
 				},
 			})
 			mason_lspconfig.setup({
-				ensure_installed = { "lua_ls", "rust_analyzer", "clangd", "pyright", "gopls" },
+				ensure_installed = { "lua_ls", "rust_analyzer", "clangd", "gopls" },
 				automatic_installation = true,
 			})
 		end,
@@ -32,7 +32,6 @@ return {
 		config = function()
 			local lspconfig = require("lspconfig")
 			lspconfig.lua_ls.setup({})
-			lspconfig.pyright.setup({})
 			lspconfig.gopls.setup({})
 			lspconfig.clangd.setup({
 				cmd = {

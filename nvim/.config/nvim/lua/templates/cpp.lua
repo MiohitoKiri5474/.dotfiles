@@ -22,6 +22,7 @@ using sstr = stringstream;
 #define pb push_back
 #define ep emplace_back
 #define GL ( n ) getline ( cin, n )
+#define gura ios::sync_with_stdio(false);cin.tie(0)
 
 // define heap
 template < class T > using MaxHeap = priority_queue < T, vector < T >, less < T > >;
@@ -29,12 +30,16 @@ template < class T > using MinHeap = priority_queue < T, vector < T >, greater <
 
 // number definition
 #define INF 0x3f3f3f3f
-#define maxN 100005
 
-int main() {
-    ios::sync_with_stdio ( false );
-    cin.tie ( 0 );
-    cout.tie ( 0 );
+// some defiine for programing contest
+#define int LL
+inline void print_ans ( bool flag ) {
+    cout << ( flag ? "Yes" : "No" ) << endl;
+}
+const int maxN = 100005;
+
+signed main() {
+    gura;
 
     |cursor|
 }]]

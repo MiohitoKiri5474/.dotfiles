@@ -21,4 +21,4 @@ keymap.set("n", "<s-tab>", ":tabprev<Return>", opt)
 keymap.set("n", "ss", ":split<Return>", opt)
 keymap.set("n", "sv", ":vsplit<Return>", opt)
 
-keymap.set("n", "<leader>t", ":TagbarToggle<cr>", opt)
+keymap.set("n", "<leader>t", ":Vista<cr>", opt)
