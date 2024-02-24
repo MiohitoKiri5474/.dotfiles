@@ -33,6 +33,7 @@ return {
 			local lspconfig = require("lspconfig")
 			lspconfig.lua_ls.setup({})
 			lspconfig.gopls.setup({})
+			lspconfig.pyright.setup({})
 			lspconfig.clangd.setup({
 				cmd = {
 					"clangd",
@@ -60,20 +61,9 @@ return {
 			null_ls.setup({
 				sources = {
 					null_ls.builtins.formatting.black,
+					null_ls.builtins.formatting.isort,
 				},
 			})
-			-- null_ls.formatters.setup({
-			-- 	{
-			-- 		name = "black",
-			-- 		args = { "--line-length", "120" },
-			-- 	},
-			-- 	{ name = "isort" },
-			-- 	{
-			-- 		name = "clang_format",
-			-- 		timeout = 10000,
-			-- 		filetypes = { "c", "cpp", "objc", "objcpp", "java" },
-			-- 	},
-			-- })
 		end,
 	},
 }

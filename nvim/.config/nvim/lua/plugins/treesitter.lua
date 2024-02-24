@@ -19,6 +19,7 @@ return {
 				"sql",
 				"svelte",
 				"fish",
+                "lua",
 				"python",
 			},
 		},
