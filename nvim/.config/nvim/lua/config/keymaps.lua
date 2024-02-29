@@ -21,6 +21,4 @@ keymap.set("n", "<s-tab>", ":tabprev<Return>", opt)
 keymap.set("n", "ss", ":split<Return>", opt)
 keymap.set("n", "sv", ":vsplit<Return>", opt)
 
-keymap.set("n", "<leader>t", ":Vista<Return>", opt)
-
 keymap.set("n", "<leader>cp", "gg0vG0y<Return>", opt)
