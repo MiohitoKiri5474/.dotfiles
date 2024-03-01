@@ -157,7 +157,7 @@ return {
 		keys = {
 			{
 				"<leader>a",
-				"<cmd>AerialToggle<Cr>",
+				"<cmd>AerialToggle!<Cr>",
 			},
 		},
 		config = function()
