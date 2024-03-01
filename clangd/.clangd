@@ -1,0 +1,11 @@
+CompileFlags:
+  # Flags for C files
+  '.*\.c$':
+    - "-std=c11"  # or your preferred C standard
+  # Flags for C++ files
+  '.*\.cpp$':
+    - "-std=c++17"  # or your preferred C++ standard
+  Add:
+    - -I/usr/local/include/
+  Index:
+    Background: Skip
