@@ -170,33 +170,4 @@ return {
 			})
 		end,
 	},
-	{
-		"mizlan/delimited.nvim",
-		keys = {
-			{
-				"[d",
-				function()
-					require("delimited").goto_prev()
-				end,
-			},
-			{
-				"]d",
-				function()
-					require("delimited").goto_next()
-				end,
-			},
-			{
-				"[D",
-				function()
-					require("delimited").goto_prev({ severity = vim.diagnostic.severity.ERROR })
-				end,
-			},
-			{
-				"]D",
-				function()
-					require("delimited").goto_next({ severity = vim.diagnostic.severity.ERROR })
-				end,
-			},
-		},
-	},
 }
