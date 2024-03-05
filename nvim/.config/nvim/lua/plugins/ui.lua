@@ -68,7 +68,10 @@ return {
 	{
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
-		dependencies = { "craftzdog/solarized-osaka.nvim" },
+		dependencies = {
+			"craftzdog/solarized-osaka.nvim",
+			"nvim-tree/nvim-web-devicons",
+		},
 		priority = 1100,
 		config = function()
 			local lualine = require("lualine")
@@ -96,18 +99,10 @@ return {
 				sections = {
 					lualine_a = { "mode" },
 					lualine_b = { "branch" },
-					lualine_c = { { "diff" }, "filename", "diagnostics" },
+					lualine_c = { { "diff" }, "filename", { "diagnostics" } },
 					lualine_x = { lsp, "filetype" },
 					lualine_y = { "location", "progress" },
-					lualine_z = {},
-				},
-				inactive_sections = {
-					lualine_a = {},
-					lualine_b = {},
-					lualine_c = {},
-					lualine_x = {},
-					lualine_y = {},
-					lualine_z = {},
+					lualine_z = { "encoding", "filesize" },
 				},
 			}
 
