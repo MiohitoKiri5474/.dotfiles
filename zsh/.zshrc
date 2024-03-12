@@ -130,3 +130,5 @@ alias "htop"="sudo glances"
 
 
 eval $(thefuck --alias)
+
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
