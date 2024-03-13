@@ -6,7 +6,7 @@ return {
 			c = { "clang_format" },
 			h = { "clang_format" },
 			lua = { "stylua" },
-			go = { "goimports", "gofumpt" },
+			go = { "gofumpt" },
 		},
 	},
 	keys = {
