@@ -99,7 +99,7 @@ return {
 				sections = {
 					lualine_a = { "mode" },
 					lualine_b = { "branch" },
-					lualine_c = { { "diff" }, "filename", { "diagnostics" } },
+					lualine_c = { { "diff", "diagnostics" }, "filename", "aerial" },
 					lualine_x = { lsp, "filetype" },
 					lualine_y = { "location", "progress" },
 					lualine_z = { "encoding", "filesize" },
@@ -162,6 +162,9 @@ return {
 					vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
 					vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
 				end,
+				layout = {
+					width = 30,
+				},
 			})
 		end,
 	},
