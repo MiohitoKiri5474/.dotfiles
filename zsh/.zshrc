@@ -21,10 +21,6 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 export_init() {
-    export NVM_DIR="$HOME/.nvm"
-        [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-        [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
     export PATH="/Users/mac/Yinge/cli/bin:$PATH"
     autoload -U compinit; compinit
 
@@ -37,6 +33,9 @@ export_init() {
     fi
 
     export PATH=$PATH:$HOME/.local/bin
+
+    export N_PREFIX=$HOME/.n
+    export PATH=$N_PREFIX/bin:$PATH
 }
 
 dailyUpdate() {
