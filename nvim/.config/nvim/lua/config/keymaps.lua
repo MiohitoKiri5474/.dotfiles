@@ -22,3 +22,5 @@ keymap.set("n", "ss", ":split<Return>", opt)
 keymap.set("n", "sv", ":vsplit<Return>", opt)
 
 keymap.set("n", "<leader>cp", "gg0vG$y<Return>", opt)
+
+keymap.set("v", "<leader>sc", ":Silicon<Return>", opt)
