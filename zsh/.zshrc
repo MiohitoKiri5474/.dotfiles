@@ -39,6 +39,14 @@ export_init() {
     export PATH=$PATH:$HOME/.local/bin
 }
 
+dailyUpdate() {
+    brew update
+    brew upgrade
+    zinit self-update
+    zinit update --parallel 3
+    nvim --headless \"+Lazy! sync\" +qa
+}
+
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -80,6 +88,5 @@ zsh-defer export_init
 
 alias "vim"="nvim"
 alias "ls"="exa --icons -F -H --group-directories-first --git -1"
-alias "dailyUpdate"="brew update && brew upgrade && zinit self-update && zinit update --parallel 3"
 alias "htop"="sudo glances"
 alias "cat"="bat"
