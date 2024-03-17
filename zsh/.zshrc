@@ -43,7 +43,7 @@ dailyUpdate() {
     brew upgrade
     zinit self-update
     zinit update --parallel 3
-    nvim --headless \"+Lazy! sync\" +qa
+    nvim --headless +\"Lazy! sync\" +qa
 }
 
 zinit ice depth=1; zinit light romkatv/powerlevel10k
