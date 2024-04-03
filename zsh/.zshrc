@@ -87,5 +87,5 @@ zsh-defer export_init
 
 alias "vim"="nvim"
 alias "ls"="exa --icons -F -H --group-directories-first --git -1"
-alias "htop"="sudo glances"
+alias "htop"="sudo btop"
 alias "cat"="bat"
