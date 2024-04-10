@@ -39,6 +39,7 @@ export_init() {
 }
 
 dailyUpdate() {
+    speedtest
     brew update
     brew upgrade
     zinit self-update
