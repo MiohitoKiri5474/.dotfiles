@@ -7,6 +7,7 @@ return {
 			h = { "clang_format" },
 			lua = { "stylua" },
 			go = { "gofumpt" },
+			python = { "isort", "black" },
 		},
 	},
 	keys = {

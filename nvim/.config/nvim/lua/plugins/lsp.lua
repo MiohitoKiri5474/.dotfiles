@@ -6,6 +6,7 @@ return {
 			if type(opts.ensure_installed) == "table" then
 				vim.list_extend(opts.ensure_installed, { "clangd", "clang-format" }) -- C/C++ related
 				vim.list_extend(opts.ensure_installed, { "gopls", "golangci-lint-langserver" }) -- Golang related
+				vim.list_extend(opts.ensure_installed, { "pyright", "black", "isort" }) -- Python related
 			end
 		end,
 	},
@@ -28,21 +29,8 @@ return {
 					require("nvim-navic").attach(client, bufnr)
 				end,
 			})
+			lspconfig.pyright.setup({})
 		end,
 	},
 	"nvim-lua/lsp-status.nvim",
-	{
-		"nvimtools/none-ls.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		config = function()
-			local null_ls = require("null-ls")
-
-			null_ls.setup({
-				sources = {
-					null_ls.builtins.formatting.black,
-					null_ls.builtins.formatting.isort,
-				},
-			})
-		end,
-	},
 }
