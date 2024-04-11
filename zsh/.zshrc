@@ -47,6 +47,15 @@ dailyUpdate() {
     nvim --headless +\"Lazy! sync\" +qa
 }
 
+create_latex_template () {
+    filename=$1
+    mkdir "$filename"
+    ln ~/school_hw/latex_template/macros.tex ./"$filename"
+    ln ~/school_hw/latex_template/preamble.tex ./"$filename"
+    ln ~/school_hw/latex_template/letterfonts.tex ./"$filename"
+    cp ~/school_hw/latex_template/template.tex ./"$filename"
+}
+
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
