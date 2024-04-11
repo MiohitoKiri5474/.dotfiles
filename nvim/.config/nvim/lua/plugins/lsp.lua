@@ -7,6 +7,7 @@ return {
 				vim.list_extend(opts.ensure_installed, { "clangd", "clang-format" }) -- C/C++ related
 				vim.list_extend(opts.ensure_installed, { "gopls", "golangci-lint-langserver" }) -- Golang related
 				vim.list_extend(opts.ensure_installed, { "pyright", "black", "isort" }) -- Python related
+				vim.list_extend(opts.ensure_installed, { "ltex-ls", "latexindent" }) -- LaTeX related
 			end
 		end,
 	},
@@ -30,6 +31,7 @@ return {
 				end,
 			})
 			lspconfig.pyright.setup({})
+			lspconfig.ltex.setup({})
 		end,
 	},
 	"nvim-lua/lsp-status.nvim",

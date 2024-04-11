@@ -8,6 +8,7 @@ return {
 			lua = { "stylua" },
 			go = { "gofumpt" },
 			python = { "isort", "black" },
+			tex = { "latexindent" },
 		},
 	},
 	keys = {
