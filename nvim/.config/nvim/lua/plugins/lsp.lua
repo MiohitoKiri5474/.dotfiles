@@ -31,7 +31,10 @@ return {
 				end,
 			})
 			lspconfig.pyright.setup({})
-			lspconfig.ltex.setup({})
+			lspconfig.ltex.setup({
+				filetypes = { "tex" },
+				flags = { debounce_text_changes = 300 },
+			})
 		end,
 	},
 	"nvim-lua/lsp-status.nvim",

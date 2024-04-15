@@ -103,5 +103,11 @@ return {
 				},
 			}
 		end,
+		keys = {
+			{
+				"<leader>vt",
+				":VimtexCompile<Return>",
+			},
+		},
 	},
 }
