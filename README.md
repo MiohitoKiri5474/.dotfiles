@@ -4,7 +4,7 @@ If you want to use any configuration of this repo, please replace files/folders 
 
 ## tmux & zsh
 
-These are minimal setting configuration.
+These are the minimal configuration.
 
 ## nvim
 
@@ -72,4 +72,4 @@ stow zsh nvim tmux
 ```
 
 5. Replace iTerm2 colorscheme with [Solarized](https://github.com/altercation/solarized)
-   > I prefer make background more darker. Here is my background color Hex code: #001a20.
+   > I prefer darker background. Here is my background color Hex code: #001a20.
