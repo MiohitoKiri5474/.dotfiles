@@ -47,13 +47,17 @@ dailyUpdate() {
     nvim --headless +\"Lazy! sync\" +qa
 }
 
-create_latex_template () {
+create_latex_template() {
     filename=$1
     mkdir "$filename"
     ln ~/school_hw/latex_template/macros.tex ./"$filename"
     ln ~/school_hw/latex_template/preamble.tex ./"$filename"
     ln ~/school_hw/latex_template/letterfonts.tex ./"$filename"
     cp ~/school_hw/latex_template/template.tex ./"$filename"
+}
+
+bits-install() {
+    cp -r ~/bits ~/.local/share/nvim/mason/packages/clangd/clangd_18.1.3/lib/clang/18/include/
 }
 
 zinit ice depth=1; zinit light romkatv/powerlevel10k
