@@ -24,6 +24,7 @@ return {
 				autoformat = false,
 			})
 			lspconfig.clangd.setup({
+				filetypes = { "yacc", "c", "cpp", "h", "hpp" },
 				cmd = { "clangd" },
 				capabilities = vim.lsp.protocol.make_client_capabilities(),
 				on_attach = function(client, bufnr)
