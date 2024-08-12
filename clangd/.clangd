@@ -1,6 +1,5 @@
 {
   "CompileFlags": {
-    "c++": ["-std=c++17"],
-    "c": ["-std=c11"]
+    Add: [-std=c++17]
   }
 }

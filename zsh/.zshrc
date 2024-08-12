@@ -43,8 +43,7 @@ dailyUpdate() {
     brew update
     brew upgrade
     zinit self-update
-    zinit update --parallel 3
-    nvim --headless +\"Lazy! sync\" +qa
+    zinit update --parallel 10
 }
 
 create_latex_template() {
