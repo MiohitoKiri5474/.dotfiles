@@ -9,6 +9,10 @@ return {
 			go = { "gofumpt" },
 			python = { "isort", "black" },
 			tex = { "latexindent" },
+			mjs = { "eslint_d" },
+			html = { "prettier" },
+			astro = { "prettier" },
+			javascript = { "prettier" },
 		},
 	},
 	keys = {
