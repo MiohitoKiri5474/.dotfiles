@@ -9,10 +9,7 @@ return {
 				vim.list_extend(opts.ensure_installed, { "gopls", "golangci-lint-langserver" }) -- Golang related
 				vim.list_extend(opts.ensure_installed, { "pyright", "black", "isort" }) -- Python related
 				vim.list_extend(opts.ensure_installed, { "ltex-ls", "latexindent" }) -- LaTeX related
-				vim.list_extend(
-					opts.ensure_installed,
-					{ "tailwindcss-language-server", "typescript-language-server", "css-lsp" }
-				) -- CSS related
+				vim.list_extend(opts.ensure_installed, { "typescript-language-server", "css-lsp" }) -- CSS related
 				vim.list_extend(opts.ensure_installed, { "typescript-language-server" }) -- typescript related
 				vim.list_extend(opts.ensure_installed, { "astro-language-server" }) -- astro related
 				vim.list_extend(opts.ensure_installed, { "eslint_d" }) -- javascript related

@@ -86,19 +86,29 @@ zinit lucid wait for \
     OMZL::completion.zsh \
     OMZL::history.zsh \
     OMZL::key-bindings.zsh \
-    OMZL::theme-and-appearance.zsh \
     OMZL::git.zsh \
     OMZ::plugins/git/git.plugin.zsh \
     OMZL::clipboard.zsh \
     OMZL::termsupport.zsh \
     OMZL::functions.zsh \
     OMZ::plugins/web-search/web-search.plugin.zsh
+    # OMZL::theme-and-appearance.zsh \
 
 
 zsh-defer export_init
 
 
 alias "vim"="nvim"
-alias "ls"="exa --icons -F -H --group-directories-first --git -1"
+alias "ls"="exa"
+alias "ll"="exa -alh"
+alias "lt"="exa --tree"
+alias "ltl"="exa --tree --long"
 alias "htop"="sudo btop"
 alias "cat"="bat"
+
+source <(fzf --zsh)
+
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
