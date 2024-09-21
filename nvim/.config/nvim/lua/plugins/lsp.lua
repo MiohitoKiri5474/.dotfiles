@@ -20,6 +20,7 @@ return {
 		"neovim/nvim-lspconfig",
 		config = function()
 			local lspconfig = require("lspconfig")
+			local mason_registry = require("mason-registry")
 			lspconfig.gopls.setup({
 				cmd = { "gopls" },
 				filetypes = { "go", "gomod", "gowork", "gotmpl" },
@@ -32,6 +33,16 @@ return {
 				capabilities = vim.lsp.protocol.make_client_capabilities(),
 				on_attach = function(client, bufnr)
 					require("nvim-navic").attach(client, bufnr)
+					local clangd = mason_registry.get_package("clangd")
+					local install_path = clangd:get_install_path()
+					local include_path = vim.fn.globpath(install_path, "**/include")
+					if vim.fn.isdirectory(include_path .. "/bits") == 0 then -- when not found
+						vim.fn.system("cp -r ~/bits " .. include_path)
+						vim.defer_fn(function()
+							pcall(vim.diagnostic.reset)
+							vim.notify("Successfully created bit/stdc++.h header")
+						end, 500)
+					end
 				end,
 			})
 			lspconfig.pyright.setup({})
