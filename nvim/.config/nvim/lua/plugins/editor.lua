@@ -159,4 +159,9 @@ return {
 			vim.g.macosime_cjk_ime = "com.apple.inputmethod.TCIM.Zhuyin"
 		end,
 	},
+	{
+		"echasnovski/mini.hipatterns",
+		event = "BufReadPre",
+		opts = {},
+	},
 }
