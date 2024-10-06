@@ -8,6 +8,7 @@ return {
 					-- Lua related
 					"lua-language-server",
 					"stylua",
+					"luacheck",
 					-- C/C++ related
 					"clangd",
 					"clang-format",
@@ -29,6 +30,9 @@ return {
 					"astro-language-server",
 					-- JavaScript related
 					"eslint_d",
+					-- sh related
+					"shfmt",
+					"shellcheck",
 				})
 			end
 		end,
