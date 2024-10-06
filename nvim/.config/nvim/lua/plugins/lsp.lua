@@ -4,15 +4,32 @@ return {
 		optional = true,
 		opts = function(_, opts)
 			if type(opts.ensure_installed) == "table" then
-				vim.list_extend(opts.ensure_installed, { "lua-language-server", "stylua" }) -- Lua related
-				vim.list_extend(opts.ensure_installed, { "clangd", "clang-format" }) -- C/C++ related
-				vim.list_extend(opts.ensure_installed, { "gopls", "golangci-lint-langserver" }) -- Golang related
-				vim.list_extend(opts.ensure_installed, { "pyright", "black", "isort" }) -- Python related
-				vim.list_extend(opts.ensure_installed, { "ltex-ls", "latexindent" }) -- LaTeX related
-				vim.list_extend(opts.ensure_installed, { "typescript-language-server", "css-lsp" }) -- CSS related
-				vim.list_extend(opts.ensure_installed, { "typescript-language-server" }) -- typescript related
-				vim.list_extend(opts.ensure_installed, { "astro-language-server" }) -- astro related
-				vim.list_extend(opts.ensure_installed, { "eslint_d" }) -- javascript related
+				vim.lsit_extend(opts.ensure_installed, {
+					-- Lua related
+					"lua-language-server",
+					"stylua",
+					-- C/C++ related
+					"clangd",
+					"clang-format",
+					-- Golang related
+					"gopls",
+					"golangci-lint-langserver",
+					-- Python related
+					"pyright",
+					"black",
+					"isort",
+					-- LaTeX related
+					"ltx-ls",
+					"latexindent",
+					-- CSS related
+					"typescript-language-server",
+					"css-lsp",
+					-- TailWindCSS related
+					"tailwindcss-language-server",
+					"astro-language-server",
+					-- JavaScript related
+					"eslint_d",
+				})
 			end
 		end,
 	},
