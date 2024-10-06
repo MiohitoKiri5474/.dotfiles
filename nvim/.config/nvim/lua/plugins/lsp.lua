@@ -4,7 +4,7 @@ return {
 		optional = true,
 		opts = function(_, opts)
 			if type(opts.ensure_installed) == "table" then
-				vim.lsit_extend(opts.ensure_installed, {
+				vim.list_extend(opts.ensure_installed, {
 					-- Lua related
 					"lua-language-server",
 					"stylua",
@@ -20,7 +20,7 @@ return {
 					"black",
 					"isort",
 					-- LaTeX related
-					"ltx-ls",
+					"ltex-ls",
 					"latexindent",
 					-- CSS related
 					"typescript-language-server",
@@ -39,45 +39,114 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
-		config = function()
-			local lspconfig = require("lspconfig")
-			local mason_registry = require("mason-registry")
-			lspconfig.gopls.setup({
-				cmd = { "gopls" },
-				filetypes = { "go", "gomod", "gowork", "gotmpl" },
-				root_dir = require("lspconfig/util").root_pattern("go.work", "go.mod", ".git"),
-				autoformat = false,
-			})
-			lspconfig.clangd.setup({
-				filetypes = { "c", "cpp" },
-				cmd = { "clangd" },
-				capabilities = vim.lsp.protocol.make_client_capabilities(),
-				on_attach = function(client, bufnr)
-					require("nvim-navic").attach(client, bufnr)
-					local clangd = mason_registry.get_package("clangd")
-					local install_path = clangd:get_install_path()
-					local include_path = vim.fn.globpath(install_path, "**/include")
-					if vim.fn.isdirectory(include_path .. "/bits") == 0 then -- when not found
-						vim.fn.system("cp -r ~/bits " .. include_path)
-						vim.defer_fn(function()
-							pcall(vim.diagnostic.reset)
-							vim.notify("Successfully created bit/stdc++.h header")
-						end, 500)
-					end
-				end,
-			})
-			lspconfig.pyright.setup({})
-			lspconfig.ltex.setup({
-				filetypes = { "tex" },
-				flags = { debounce_text_changes = 300 },
-			})
-			lspconfig.lua_ls.setup({})
-			lspconfig.tsserver.setup({
-				-- cmd = { "tsserver" },
-				filetypes = { "typescript", "typescriptreact" },
-			})
-			lspconfig.astro.setup({})
-		end,
+		opts = {
+			inlay_hints = { enabled = true },
+			---@type lspconfig.options
+			servers = {
+				cssls = {},
+				html = {},
+				pyright = {},
+				gopls = {
+					cmd = { "gopls" },
+					filetypes = { "go", "gomod", "gowork", "gotmpl" },
+					root_dir = require("lspconfig/util").root_pattern("go.work", "go.mod", ".git"),
+					autoformat = false,
+				},
+				ltex = {
+					filetypes = { "tex" },
+					flags = { debounce_text_changes = 300 },
+				},
+				tsserver = {
+					cmd = { "tsserver" },
+					filetypes = { "typescript", "typescriptreact" },
+				},
+				astro = {},
+				clangd = {
+					filetypes = { "c", "cpp" },
+					cmd = { "clangd" },
+					capabilities = vim.lsp.protocol.make_client_capabilities(),
+					on_attach = function(client, bufnr)
+						require("nvim-navic").attach(client, bufnr)
+						local clangd = require("mason-registry").get_package("clangd")
+						local install_path = clangd:get_install_path()
+						local include_path = vim.fn.globpath(install_path, "**/include")
+						if vim.fn.isdirectory(include_path .. "/bits") == 0 then -- when not found
+							vim.fn.system("cp -r ~/bits " .. include_path)
+							vim.defer_fn(function()
+								pcall(vim.diagnostic.reset)
+								vim.notify("Successfully created bit/stdc++.h header")
+							end, 500)
+						end
+					end,
+				},
+				lua_ls = {
+					-- enabled = false,
+					single_file_support = true,
+					settings = {
+						Lua = {
+							workspace = {
+								checkThirdParty = false,
+							},
+							completion = {
+								workspaceWord = true,
+								callSnippet = "Both",
+							},
+							misc = {
+								parameters = {
+									-- "--log-level=trace",
+								},
+							},
+							hint = {
+								enable = true,
+								setType = false,
+								paramType = true,
+								paramName = "Disable",
+								semicolon = "Disable",
+								arrayIndex = "Disable",
+							},
+							doc = {
+								privateName = { "^_" },
+							},
+							type = {
+								castNumberToInteger = true,
+							},
+							diagnostics = {
+								disable = { "incomplete-signature-doc", "trailing-space" },
+								-- enable = false,
+								groupSeverity = {
+									strong = "Warning",
+									strict = "Warning",
+								},
+								groupFileStatus = {
+									["ambiguity"] = "Opened",
+									["await"] = "Opened",
+									["codestyle"] = "None",
+									["duplicate"] = "Opened",
+									["global"] = "Opened",
+									["luadoc"] = "Opened",
+									["redefined"] = "Opened",
+									["strict"] = "Opened",
+									["strong"] = "Opened",
+									["type-check"] = "Opened",
+									["unbalanced"] = "Opened",
+									["unused"] = "Opened",
+								},
+								unusedLocalExclude = { "_*" },
+							},
+							format = {
+								enable = false,
+								defaultConfig = {
+									indent_style = "space",
+									indent_size = "2",
+									continuation_indent_size = "2",
+								},
+							},
+						},
+					},
+				},
+			},
+			setup = {},
+		},
 	},
 	"nvim-lua/lsp-status.nvim",
 }
