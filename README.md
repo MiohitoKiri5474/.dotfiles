@@ -24,6 +24,10 @@ This configuration is base on [LazyVim](lazyvim.org) with some modify.
 - a [Nerd Font](https://www.nerdfonts.com/)(v3.0 or greater) **_(optional, but needed to display some icons)_**
   I'm using SauceCode Pro.
 - a **C** compiler for `nvim-treesitter`. [More information](https://github.com/nvim-treesitter/nvim-treesitter#requirements)
+- Node.js & NPM
+- Python3, pip3, python3-venv
+- Rust
+  - Recommend using install [script](https://www.rust-lang.org/tools/install)
 - for [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) **_(optional)_**
   - **live grep**: [ripgrep](https://github.com/BurntSushi/ripgrep)
   - **find files**: [fd](https://github.com/sharkdp/fd)
