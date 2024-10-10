@@ -74,7 +74,6 @@ return {
 							vim.fn.system("cp -r ~/bits " .. include_path)
 							vim.defer_fn(function()
 								pcall(vim.diagnostic.reset)
-								vim.notify("Successfully created bit/stdc++.h header")
 							end, 500)
 						end
 					end,
