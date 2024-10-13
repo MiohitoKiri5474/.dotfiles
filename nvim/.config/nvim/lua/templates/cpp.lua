@@ -21,7 +21,7 @@ using sstr = stringstream;
 // general definition
 #define pb push_back
 #define ep emplace_back
-#define GL ( n ) getline ( cin, n )
+#define GL(n) getline ( cin, n )
 #define gura ios::sync_with_stdio(false);cin.tie(0)
 
 // define heap
