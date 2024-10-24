@@ -87,7 +87,7 @@ stow zsh nvim tmux clangd tmux zathura
 
 ```sh
 # install require packages
-sudo apt install git python3 python3-venv stow nodejs npm curl build-essential golang unzip
+sudo apt install git python3 python3-venv stow nodejs npm curl build-essential golang unzip zsh tmux
 
 # install NeoVim Nightly
 sudo add-apt-repository ppa:neovim-ppa/unstable
