@@ -86,6 +86,9 @@ stow zsh nvim tmux clangd tmux zathura
 1. Install packages with apt.
 
 ```sh
+# install require packages
+sudo apt install git python3 python3-venv stow nodejs npm curl build-essential golang unzip
+
 # install NeoVim Nightly
 sudo add-apt-repository ppa:neovim-ppa/unstable
 sudo apt-get update
@@ -97,8 +100,6 @@ LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/re
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
 tar xf lazygit.tar.gz lazygit
 sudo install lazygit /usr/local/bin
-
-sudo apt install git python3 python3-venv stow nodejs npm curl build-essential golang
 ```
 
 2. Clone dotfiles into home folder at localhost.
