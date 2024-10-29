@@ -99,10 +99,10 @@ zsh-defer export_init
 
 
 alias "vim"="nvim"
-alias "ls"="exa"
-alias "ll"="exa -alh"
-alias "lt"="exa --tree"
-alias "ltl"="exa --tree --long"
+alias "ls"="eza"
+alias "ll"="eza -alh"
+alias "lt"="eza --tree"
+alias "ltl"="eza --tree --long"
 alias "htop"="sudo btop"
 alias "cat"="bat"
 
