@@ -13,8 +13,17 @@ tab_size = 4
 
 [opener]
 vs_code = [{ run = 'code "$@"', block = true, for = "unix" }]
-default_editor = [{ run = 'nvim "$@"', block = true, for = "unix" }]
+default_editor = [{ run = 'nvim "$1"', block = true, for = "unix" }]
+pdf = [{ run = 'zathura "$1"', block = true, for = "unix" }]
 
 [open]
 append_rules = [{ name = "*", use = "default_editor" }]
-rules = [{ name = "*.md", use = ["vs_code", "default_editor"] }]
+rules = [
+    { name = "*.md", use = [
+        "vs_code",
+        "default_editor",
+    ] },
+    { name = "*.pdf", use = [
+        "pdf",
+    ] },
+]
