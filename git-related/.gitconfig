@@ -1,0 +1,26 @@
+[core]
+	editor = nvim
+	excludesfile = /Users/miohitokiri5474/.gitignore_global
+[user]
+	mall = lltzpp@gmail.com
+	mail = lltzpp@gmail.com
+	mane = MiohitoKiri
+	name = MiohitoKiri5474
+	email = lltzpp@gmail.com
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = /Users/miohitokiri5474/.stCommitMsg
+[pull]
+	rebase = true
