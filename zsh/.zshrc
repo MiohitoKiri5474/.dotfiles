@@ -53,7 +53,7 @@ bits-install() {
 }
 
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
-  eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/tokyonight.toml)"
+  eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/minimal-solarized-osaka.toml)"
 fi
 
 
