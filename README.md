@@ -58,7 +58,6 @@ git clone https://github.com/MiohitoKiri5474/.dotfiles.git
 4. Install `tpm` for tmux.
 
 ```sh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
@@ -114,7 +113,6 @@ git clone https://github.com/MiohitoKiri5474/.dotfiles.git
 3. Install `tpm` for tmux.
 
 ```sh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
