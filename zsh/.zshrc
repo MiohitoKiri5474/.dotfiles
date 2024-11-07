@@ -53,7 +53,7 @@ bits-install() {
 }
 
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
-  eval "$(oh-my-posh init zsh)"
+  eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/tokyonight.toml)"
 fi
 
 
@@ -112,4 +112,8 @@ function y() {
 		builtin cd -- "$cwd"
 	fi
 	rm -f -- "$tmp"
+}
+
+function set_poshcontext() {
+    export POSH=$(date)
 }
