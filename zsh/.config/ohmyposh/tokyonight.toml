@@ -1,0 +1,113 @@
+console_title_template = ' {{ .Folder }} :: {{if .Root}}Admin{{end}}'
+terminal_background = 'p:t-background'
+version = 3
+final_space = true
+
+[palette]
+blue-bell = '#9aa5ce'
+blue-black = '#565f89'
+celeste-blue = '#b4f9f8'
+light-sky-blue = '#7dcfff'
+main-bg = '#24283b'
+pastal-grey = '#cfc9c2'
+pistachio-green = '#9ece6a'
+t-background = 'p:main-bg'
+terminal-black = '#414868'
+terminal-blue = '#7aa2f7'
+terminal-green = '#73daca'
+terminal-magenta = '#bb9af7'
+terminal-red = '#f7768e'
+terminal-white = '#c0caf5'
+terminal-yellow = '#e0af68'
+white-blue = '#a9b1d6'
+
+[[blocks]]
+type = 'prompt'
+alignment = 'left'
+
+[[blocks.segments]]
+template = '➜ '
+foreground = 'p:terminal-blue'
+background = 'transparent'
+type = 'text'
+style = 'plain'
+
+[[blocks.segments]]
+template = '{{ .UserName }} '
+foreground = 'p:terminal-yellow'
+background = 'transparent'
+type = 'text'
+style = 'plain'
+
+[[blocks.segments]]
+template = '{{ .PWD }} '
+foreground = 'p:terminal-magenta'
+type = 'path'
+style = 'plain'
+
+[blocks.segments.properties]
+style = 'folder'
+
+[[blocks.segments]]
+type = "git"
+style = "powerline"
+foreground = "#193549"
+background = "#ffeb3b"
+background_templates = [
+    "{{ if or (.Working.Changed) (.Staging.Changed) }}#FFEB3B{{ end }}",
+    "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#FFCC80{{ end }}",
+    "{{ if gt .Ahead 0 }}#B388FF{{ end }}",
+    "{{ if gt .Behind 0 }}#B388FB{{ end }}",
+]
+template = "{{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}"
+
+[properties]
+fetch_status = true
+fetch_upstream_icon = true
+source = "cli"
+
+[properties.untracked_modes]
+"/Users/user/Projects/oh-my-posh/" = "no"
+
+[properties.mapped_branches]
+"feat/*" = "🚀 "
+"bug/*" = "🐛 "
+
+[[blocks]]
+type = 'prompt'
+alignment = 'right'
+overflow = 'hide'
+
+[[blocks.segments]]
+template = '{{ .Env.VarName}}'
+foreground = 'p:white-blue'
+type = 'status'
+style = 'plain'
+
+[[blocks.segments]]
+type = "executiontime"
+style = "powerline"
+powerline_symbol = ""
+template = " took {{ .FormattedMs }}"
+
+[blocks.segments.properties]
+threshold = 500
+style = "austin"
+always_enabled = true
+
+[[blocks.segments]]
+template = '  '
+foreground = 'p:terminal-red'
+type = 'status'
+style = 'plain'
+
+[[blocks]]
+type = 'prompt'
+alignment = 'left'
+newline = true
+
+[[blocks.segments]]
+template = '❯'
+foreground = 'p:pistachio-green'
+type = 'text'
+style = 'plain'
