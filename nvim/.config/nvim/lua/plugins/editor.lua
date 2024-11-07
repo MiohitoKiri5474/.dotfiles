@@ -149,7 +149,7 @@ return {
 		cmd = "IncRename",
 		keys = {
 			{
-				"<leader>rn",
+				"<leader>n",
 				function()
 					return ":IncRename " .. vim.fn.expand("<cword>")
 				end,
