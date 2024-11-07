@@ -50,53 +50,30 @@ style = 'folder'
 
 [[blocks.segments]]
 type = "git"
-style = "powerline"
-foreground = "#193549"
-background = "#ffeb3b"
-background_templates = [
-    "{{ if or (.Working.Changed) (.Staging.Changed) }}#FFEB3B{{ end }}",
-    "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#FFCC80{{ end }}",
-    "{{ if gt .Ahead 0 }}#B388FF{{ end }}",
-    "{{ if gt .Behind 0 }}#B388FB{{ end }}",
-]
-template = "{{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}"
+style = "plain"
+template = 'on <p:pistachio-green>{{ .HEAD }}{{if (gt .Behind 0)}} 󰜮{{ .Behind }}{{ end }}{{if (gt .Ahead 0)}} 󰜷{{ .Ahead }}{{ end }}</><p:terminal-magenta>{{if .Working.Added }} +{{ .Working.Added }}{{ end }}</><p:light-sky-blue>{{if .Working.Modified }} ~{{ .Working.Modified }}{{ end }}</><p:terminal-yellow>{{if .Working.Untracked }} !{{ .Working.Untracked }}{{ end }}</><p:terminal-red>{{ if .Working.Deleted }} -{{ .Working.Deleted }}{{ end }}</>'
 
-[properties]
+[blocks.segments.properties]
 fetch_status = true
 fetch_upstream_icon = true
 source = "cli"
 
-[properties.untracked_modes]
-"/Users/user/Projects/oh-my-posh/" = "no"
-
-[properties.mapped_branches]
-"feat/*" = "🚀 "
-"bug/*" = "🐛 "
-
 [[blocks]]
 type = 'prompt'
 alignment = 'right'
-overflow = 'hide'
-
-[[blocks.segments]]
-template = '{{ .Env.VarName}}'
-foreground = 'p:white-blue'
-type = 'status'
-style = 'plain'
+overflow = 'hidden'
 
 [[blocks.segments]]
 type = "executiontime"
 style = "powerline"
-powerline_symbol = ""
 template = " took {{ .FormattedMs }}"
 
 [blocks.segments.properties]
 threshold = 500
 style = "austin"
-always_enabled = true
 
 [[blocks.segments]]
-template = '  '
+template = ' '
 foreground = 'p:terminal-red'
 type = 'status'
 style = 'plain'
