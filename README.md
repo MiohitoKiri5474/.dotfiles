@@ -65,20 +65,23 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 ```sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-git clone https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+# Install Oh my Posh
+sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
+sudo chmod +x /usr/local/bin/oh-my-posh
 ```
 
 5. Use `stow` to deploy all config files.
 
 ```sh
 cd .dotfiles
-stow zsh nvim tmux clangd tmux zathura
+stow zsh nvim tmux clangd tmux zathura yazi
 ```
 
 5. Replace iTerm2 colorscheme with [Solarized](https://github.com/altercation/solarized)
-   > I prefer darker background. Here is my background color Hex code: #001a20.
+   > I prefer darker background. Here is my background color Hex code: #06191f.
 
 ### Ubuntu
 
@@ -120,9 +123,12 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 ```sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-git clone https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+# Install Oh my Posh
+sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
+sudo chmod +x /usr/local/bin/oh-my-posh
 
 sudo sh -c "echo $(which zsh) >> /etc/shells"
 chsh -s $(which zsh)
@@ -132,5 +138,5 @@ chsh -s $(which zsh)
 
 ```sh
 cd .dotfiles
-stow zsh nvim tmux clangd tmux
+stow zsh nvim tmux clangd tmux zathura yazi
 ```
