@@ -17,7 +17,7 @@ return {
 ██║  ██╗██║██║  ██║██║███████║     ██║   ██║       ██║
 ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝╚═╝╚══════╝     ╚═╝   ╚═╝       ╚═╝
             ]]
-		logo = string.rep("\n", 8) .. logo .. "\n\n"
+		logo = string.rep("\n", 2) .. logo .. string.rep("\n", 2)
 		opts.config.header = vim.split(logo, "\n")
 	end,
 }
