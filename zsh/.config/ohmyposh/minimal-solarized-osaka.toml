@@ -9,12 +9,6 @@ newline = true
 
 [[blocks.segments]]
 foreground = 'magenta'
-type = 'text'
-style = 'plain'
-template = '{{.UserName}} <#5c6d74>at</> '
-
-[[blocks.segments]]
-foreground = 'yellow'
 type = 'path'
 style = 'plain'
 template = '{{.Path}} '
