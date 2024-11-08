@@ -9,6 +9,12 @@ newline = true
 
 [[blocks.segments]]
 foreground = 'magenta'
+type = 'text'
+style = 'plain'
+template = '{{.UserName}} <#5c6d74>at</> '
+
+[[blocks.segments]]
+foreground = 'yellow'
 type = 'path'
 style = 'plain'
 template = '{{.Path}} '
@@ -17,8 +23,8 @@ template = '{{.Path}} '
 style = 'full'
 
 [[blocks.segments]]
-type = "git"
-style = "plain"
+type = 'git'
+style = 'plain'
 template = '<#5c6d74>on</> <green>{{.HEAD}}{{if (gt .Behind 0)}} 󰜮{{.Behind}}{{end}}{{if (gt .Ahead 0)}} 󰜷{{.Ahead}}{{end}}</><magenta>{{if .Working.Added}} +{{.Working.Added}}{{end}}</><p:light-sky-blue>{{if .Working.Modified}} ~{{.Working.Modified}}{{end}}</><yellow>{{if .Working.Untracked}} !{{.Working.Untracked}}{{end}}</><red>{{if .Working.Deleted}} -{{.Working.Deleted}}{{end}}</>'
 
 [blocks.segments.properties]
@@ -32,14 +38,14 @@ alignment = 'right'
 overflow = 'hidden'
 
 [[blocks.segments]]
-type = "executiontime"
-style = "powerline"
+type = 'executiontime'
+style = 'powerline'
 foreground = '#5c6d74'
-template = " took {{.FormattedMs}}"
+template = 'took {{.FormattedMs}}'
 
 [blocks.segments.properties]
 threshold = 500
-style = "austin"
+style = 'austin'
 
 [[blocks.segments]]
 template = ' '
@@ -57,13 +63,12 @@ type = 'text'
 style = 'plain'
 background = 'transparent'
 foreground_templates = [
-    "{{if gt .Code 0}}red{{end}}",
-    "{{if eq .Code 0}}cyan{{end}}",
+    '{{if gt .Code 0}}red{{end}}',
+    '{{if eq .Code 0}}cyan{{end}}',
 ]
-# template = '<red>{{if gt .Code 0}}❯{{end}}</><cyan>{{if eq .Code 0}}❯{{end}}</>'
 template = "❯"
 
 [secondary_prompt]
-background = "transparent"
+background = 'transparent'
 foreground = 'cyan'
-template = "❯❯"
+template = '❯❯'

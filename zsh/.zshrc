@@ -52,6 +52,7 @@ bits-install() {
     cp -r ~/bits ~/.local/share/nvim/mason/packages/clangd/clangd_18.1.3/lib/clang/18/include/
 }
 
+# oh my posh
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
   eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/minimal-solarized-osaka.toml)"
 fi
