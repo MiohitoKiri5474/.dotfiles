@@ -2,7 +2,7 @@
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # title      Solarized Osaka                                          +
 # version    1.0.0                                                    +
-# repository https://github.com/MiohitoKiri5474/solarized-osaka-tmux-tmux  +
+# repository https://github.com/MiohitoKiri5474/solarized-osaka-tmux  +
 # author     MiohitoKiri5474                                          +
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -57,7 +57,7 @@ tmux set -g status-left "#[fg=${THEME[bblack]},bg=${THEME[bmagenta]},bold] #{?cl
 
 #+--- Windows ---+
 # Focus
-tmux set -g window-status-current-format "$RESET#[fg=${THEME[green]},bg=${THEME[background]}] #{?#{==:#{pane_current_command},ssh},󰣀 , }#[fg=${THEME[magenta]},bold,nodim]$window_number#W#[nobold]#{?window_zoomed_flag, $zoom_number, $custom_pane}#{?window_last_flag, , }"
+tmux set -g window-status-current-format "$RESET#[fg=${THEME[green]},bg=${THEME[bgreen]}] #{?#{==:#{pane_current_command},ssh},󰣀 , }#[fg=${THEME[magenta]},bold,nodim]$window_number#W#[nobold]#{?window_zoomed_flag, $zoom_number, $custom_pane}#{?window_last_flag, , }"
 # Unfocused
 tmux set -g window-status-format "$RESET#[fg=${THEME[foreground]}] #{?#{==:#{pane_current_command},ssh},󰣀 , }${RESET}$window_number#W#[nobold,dim]#{?window_zoomed_flag, $zoom_number, $custom_pane}#[fg=${THEME[yellow]}]#{?window_last_flag,󰁯  , }"
 
