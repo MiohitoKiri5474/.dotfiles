@@ -1,4 +1,4 @@
-console_title_template = ' {{ .Folder }} :: {{if .Root}}Admin{{end}}'
+console_title_template = ' {{ .Folder }} {{if .Root}} :: Admin{{end}}'
 version = 3
 final_space = true
 
