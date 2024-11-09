@@ -14,7 +14,7 @@ source $SCRIPTS_PATH/themes.sh
 tmux set -g status-left-length 80
 tmux set -g status-right-length 150
 
-RESET="#[fg=${THEME[foreground]},bg=${THEME[background]},nobold,noitalics,nounderscore,nodim]"
+RESET="#[fg=${THEME[foreground]},bg=${THEME[black]},nobold,noitalics,nounderscore,nodim]"
 # Highlight colors
 tmux set -g mode-style "fg=${THEME[bgreen]},bg=${THEME[bblack]}"
 
@@ -25,7 +25,7 @@ tmux set -g pane-border-style "fg=${THEME[bblack]}"
 tmux set -g pane-active-border-style "fg=${THEME[bblack]}"
 tmux set -g pane-border-status off
 
-tmux set -g status-style bg="${THEME[background]}"
+tmux set -g status-style bg="${THEME[black]}"
 
 TMUX_VARS="$(tmux show -g)"
 
@@ -53,14 +53,14 @@ battery_status="#($SCRIPTS_PATH/battery-widget.sh)"
 
 #+--- Bars LEFT ---+
 # Session name
-tmux set -g status-left "#[fg=${THEME[bblack]},bg=${THEME[bmagenta]},bold] #{?client_prefix,󰠠 ,#[dim]󰤂 }#[bold,nodim] MiohitoKiri5475 "
+tmux set -g status-left "#[fg=${THEME[bblack]},bg=${THEME[bmagenta]},bold] #{?client_prefix,󰠠 ,#[dim]󰤂 }${RESET}#[fg=${THEME[bblack]},bg=${THEME[bmagenta]}]#(whoami) "
 
 #+--- Windows ---+
 # Focus
-tmux set -g window-status-current-format "$RESET#[fg=${THEME[green]},bg=${THEME[bgreen]}] #{?#{==:#{pane_current_command},ssh},󰣀 , }#[fg=${THEME[magenta]},bold,nodim]$window_number#W#[nobold]#{?window_zoomed_flag, $zoom_number, $custom_pane}#{?window_last_flag, , }"
+tmux set -g window-status-current-format "${RESET}#[bg=${THEME[white]}] #[fg=${THEME[magenta]},bold,nodim]$window_number #W#[nobold]#{?window_zoomed_flag, $zoom_number, $custom_pane}"
 # Unfocused
-tmux set -g window-status-format "$RESET#[fg=${THEME[foreground]}] #{?#{==:#{pane_current_command},ssh},󰣀 , }${RESET}$window_number#W#[nobold,dim]#{?window_zoomed_flag, $zoom_number, $custom_pane}#[fg=${THEME[yellow]}]#{?window_last_flag,󰁯  , }"
+tmux set -g window-status-format "${RESET}#{?window_last_flag, #[fg=${THEME[yellow]}], }$window_number #W#[nobold,dim]#{?window_zoomed_flag, $zoom_number, $custom_pane}"
 
 #+--- Bars RIGHT ---+
-tmux set -g status-right "$battery_status$current_path$cmus_status$netspeed$git_status$date_and_time"
+tmux set -g status-right "$battery_status$current_path$cmus_status$netspeed$git_status$date_and_time #[fg=${THEME[black]},bg=${THEME[magenta]}] #H"
 tmux set -g window-status-separator ""
