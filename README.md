@@ -10,11 +10,13 @@ These are the minimal configuration.
 
 This configuration is base on [LazyVim](lazyvim.org) with some modify.
 
-![](/images/cover.png)
-![](/images/lazy-nvim.png)
-![](/images/fuzzy.png)
-![](/images/shot-1.png)
-![](/images/shot-2.png)
+![cover](/images/cover.png)
+![fuzzy](/images/fuzzy.png)
+![fzf](/imagus/fzf.png)
+![syntax-error](/images/syntax-error.png)
+![tag](/images/tag.png)
+![terminal-split](/images/terminal-split.png)
+![test](/images/test.png)
 
 ## Requirements
 
