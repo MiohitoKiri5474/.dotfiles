@@ -47,27 +47,22 @@ This configuration is base on [LazyVim](lazyvim.org) with some modify.
 
 ```sh
 brew bundle --file ~/myFolder/Brewfile
+
+# Rust install
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
+
+````
 
 3. Clone dotfiles into home folder at localhost.
 
 ```sh
 git clone https://github.com/MiohitoKiri5474/.dotfiles.git
-```
-
-4. Install `tpm` for tmux.
-
-```sh
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-```
+````
 
 4. Install packages for zsh.
 
 ```sh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-
 # Install Oh my Posh
 sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
 sudo chmod +x /usr/local/bin/oh-my-posh
@@ -89,12 +84,11 @@ stow zsh nvim tmux clangd tmux zathura yazi
 
 ```sh
 # install require packages
-sudo apt install git python3 python3-venv stow nodejs npm curl build-essential golang unzip zsh tmux fzf
+sudo apt install git python3 python3-venv stow nodejs npm curl build-essential golang unzip zsh tmux fzf yazi ripgrep fd-find
 
 # install NeoVim Nightly
 sudo add-apt-repository ppa:neovim-ppa/unstable
 sudo apt-get update
-
 sudo apt install neovim
 
 # install lazygit
@@ -103,7 +97,7 @@ curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/lates
 tar xf lazygit.tar.gz lazygit
 sudo install lazygit /usr/local/bin
 
-# Rust instal (optional, but I'm already configured Rust in my NeoVim dotfile)
+# Rust install
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
@@ -113,19 +107,9 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 git clone https://github.com/MiohitoKiri5474/.dotfiles.git
 ```
 
-3. Install `tpm` for tmux.
-
-```sh
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-```
-
 3. Install packages for zsh, and set zsh as default shell.
 
 ```sh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-
 # Install Oh my Posh
 sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
 sudo chmod +x /usr/local/bin/oh-my-posh
