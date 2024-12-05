@@ -30,9 +30,12 @@ return {
 					"astro-language-server",
 					-- JavaScript related
 					"eslint_d",
+					"oxlint",
 					-- sh related
 					"shfmt",
 					"shellcheck",
+					-- Vue related
+					"vue-language-server",
 				})
 			end
 		end,
