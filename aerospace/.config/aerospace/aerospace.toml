@@ -57,12 +57,12 @@ preset = 'qwerty'
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 5
-inner.vertical =   5
-outer.left =       5
-outer.bottom =     5
-outer.top =        5
-outer.right =      5
+inner.horizontal = 10
+inner.vertical =   10
+outer.left =       10
+outer.bottom =     10
+outer.top =        10
+outer.right =      10
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -119,6 +119,7 @@ alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
 alt-4 = 'workspace 4'
+alt-5 = 'workspace 5'
 alt-a = 'workspace A' # Arc Browser
 alt-d = 'workspace D' # Discord
 alt-s = 'workspace S' # Spotify
@@ -129,6 +130,7 @@ alt-shift-1 = ['move-node-to-workspace 1', 'workspace 1']
 alt-shift-2 = ['move-node-to-workspace 2', 'workspace 2']
 alt-shift-3 = ['move-node-to-workspace 3', 'workspace 3']
 alt-shift-4 = ['move-node-to-workspace 4', 'workspace 4']
+alt-shift-5 = ['move-node-to-workspace 5', 'workspace 5']
 alt-shift-a = ['move-node-to-workspace A', 'workspace A']
 alt-shift-d = ['move-node-to-workspace D', 'workspace D']
 alt-shift-s = ['move-node-to-workspace S', 'workspace S']
