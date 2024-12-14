@@ -31,6 +31,7 @@ return {
 					-- JavaScript related
 					"eslint_d",
 					"oxlint",
+					"prettier",
 					-- sh related
 					"shfmt",
 					"shellcheck",
@@ -48,6 +49,7 @@ return {
 			servers = {
 				cssls = {},
 				html = {},
+				eslint = {},
 				pyright = {},
 				gopls = {
 					cmd = { "gopls" },
@@ -64,6 +66,19 @@ return {
 					filetypes = { "typescript", "typescriptreact" },
 				},
 				astro = {},
+				volar = {},
+				ts_ls = {
+					init_options = {
+						plugins = {
+							{
+								name = "@vue/typescript-plugin",
+								location = "/usr/local/lib/node_modules/@vue/language-server",
+								languages = { "vue" },
+							},
+						},
+					},
+					filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+				},
 				clangd = {
 					filetypes = { "c", "cpp" },
 					cmd = { "clangd" },
