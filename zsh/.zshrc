@@ -49,7 +49,7 @@ create_latex_template() {
 }
 
 bits-install() {
-    cp -r ~/bits ~/.local/share/nvim/mason/packages/clangd/clangd_18.1.3/lib/clang/18/include/
+    cp -r ~/bits ~/.local/share/nvim/mason/packages/clangd/clangd_19.1.2/lib/clang/19/include/
 }
 
 # oh my posh
