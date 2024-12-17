@@ -26,6 +26,11 @@ fetch_status = true
 fetch_upstream_icon = true
 source = "cli"
 
+[[blocks.segments]]
+type = "python"
+style = "powerline"
+template = " <#5c6d74>with</> <#519e97> {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}</> "
+
 [[blocks]]
 type = 'prompt'
 alignment = 'right'
