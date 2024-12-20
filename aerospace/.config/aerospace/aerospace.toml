@@ -167,6 +167,11 @@ alt-shift-l = ['join-with right', 'mode main']
 if.app-id = 'com.googlecode.iterm2'
 run = 'move-node-to-workspace T'
 
+# SourceTree
+[[on-window-detected]]
+if.app-id = 'com.torusknot.SourceTreeNotMAS'
+run = 'move-node-to-workspace T'
+
 # Arc Browser
 [[on-window-detected]]
 if.app-id = 'company.thebrowser.Browser'
@@ -180,4 +185,9 @@ run = 'move-node-to-workspace S'
 # Discord
 [[on-window-detected]]
 if.app-id = 'com.hnc.Discord'
+run = 'move-node-to-workspace D'
+
+# Messenger
+[[on-window-detected]]
+if.app-id = 'com.facebook.archon.developerID'
 run = 'move-node-to-workspace D'
