@@ -122,3 +122,9 @@ function set_poshcontext() {
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Created by `pipx` on 2024-12-17 13:04:31
+export PATH="$PATH:/Users/miohitokiri5474/.local/bin"
+autoload -U bashcompinit
+bashcompinit
+eval "$(register-python-argcomplete pipx)"
