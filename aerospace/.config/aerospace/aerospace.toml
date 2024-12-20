@@ -191,3 +191,8 @@ run = 'move-node-to-workspace D'
 [[on-window-detected]]
 if.app-id = 'com.facebook.archon.developerID'
 run = 'move-node-to-workspace D'
+
+# Line
+[[on-window-detected]]
+if.app-id = 'jp.naver.line.mac'
+run = 'move-node-to-workspace D'
