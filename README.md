@@ -48,7 +48,12 @@ This configuration is base on [LazyVim](lazyvim.org) with some modify.
 2. Install packages with brew.
 
 ```sh
-brew bundle --file ~/myFolder/Brewfile
+# Install all package in Brewfile
+brew bundle --file ./Brewfile
+
+# Install essential package only
+brew tap zegervdv/zathura
+brew install neovim tmux yazi hammerspoon karabiner-elements yazi zathura btop bat
 
 # Rust install
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -74,7 +79,7 @@ sudo chmod +x /usr/local/bin/oh-my-posh
 
 ```sh
 cd .dotfiles
-stow zsh nvim tmux clangd tmux zathura yazi hammerspoon
+stow zsh nvim tmux clangd tmux zathura yazi hammerspoon aerospace karabiner
 ```
 
 5. Replace iTerm2 colorscheme with [Solarized](https://github.com/altercation/solarized)
