@@ -74,7 +74,7 @@ sudo chmod +x /usr/local/bin/oh-my-posh
 
 ```sh
 cd .dotfiles
-stow zsh nvim tmux clangd tmux zathura yazi
+stow zsh nvim tmux clangd tmux zathura yazi hammerspoon
 ```
 
 5. Replace iTerm2 colorscheme with [Solarized](https://github.com/altercation/solarized)
