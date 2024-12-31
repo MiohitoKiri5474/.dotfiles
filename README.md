@@ -54,12 +54,12 @@ brew bundle --file ./Brewfile
 # Install essential package only
 brew tap zegervdv/zathura
 brew install neovim tmux yazi hammerspoon karabiner-elements yazi zathura btop bat
+# Install require package for tmux theme
+brew install bash bc coreutils gawk gh glab gsed jq nowplaying-cli
 
 # Rust install
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
-
-````
 
 3. Clone dotfiles into home folder at localhost.
 
@@ -82,8 +82,9 @@ cd .dotfiles
 stow zsh nvim tmux clangd tmux zathura yazi hammerspoon aerospace karabiner
 ```
 
-5. Replace iTerm2 colorscheme with [Solarized](https://github.com/altercation/solarized)
+6. Replace iTerm2 colorscheme with [Solarized](https://github.com/altercation/solarized) and pick a nerd font.
    > I prefer darker background. Here is my background color Hex code: #06191f.
+   > The nerd font I'm using is JetBrainMono Nerd Font Mono.
 
 ### Ubuntu
 
