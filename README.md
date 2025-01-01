@@ -71,8 +71,7 @@ git clone https://github.com/MiohitoKiri5474/.dotfiles.git
 
 ```sh
 # Install Oh my Posh
-sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
-sudo chmod +x /usr/local/bin/oh-my-posh
+brew install jandedobbeleer/oh-my-posh/oh-my-posh
 ```
 
 5. Use `stow` to deploy all config files.
