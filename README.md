@@ -53,9 +53,13 @@ brew bundle --file ./Brewfile
 
 # Install essential package only
 brew tap zegervdv/zathura
-brew install neovim tmux yazi hammerspoon karabiner-elements yazi zathura btop bat
+brew install neovim tmux yazi hammerspoon karabiner-elements yazi zathura btop bat wget eza
 # Install require package for tmux theme
 brew install bash bc coreutils gawk gh glab gsed jq nowplaying-cli
+# Install Aerospace
+brew install --cask nikitabobko/tap/aerospacebrew install --cask nikitabobko/tap/aerospace
+# Install Oh my Posh
+brew install jandedobbeleer/oh-my-posh/oh-my-posh
 
 # Rust install
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -67,14 +71,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 git clone https://github.com/MiohitoKiri5474/.dotfiles.git
 ````
 
-4. Install packages for zsh.
-
-```sh
-# Install Oh my Posh
-brew install jandedobbeleer/oh-my-posh/oh-my-posh
-```
-
-5. Use `stow` to deploy all config files.
+4. Use `stow` to deploy all config files.
 
 ```sh
 cd .dotfiles
