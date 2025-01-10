@@ -34,6 +34,8 @@ This configuration is base on [LazyVim](lazyvim.org) with some modify.
 - for [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) **_(optional)_**
   - **live grep**: [ripgrep](https://github.com/BurntSushi/ripgrep)
   - **find files**: [fd](https://github.com/sharkdp/fd)
+- [macsim](https://github.com/laishulu/macism/)
+  - Switch input source automatically (Traditional Chinese and English).
 
 ## Usage
 
@@ -62,6 +64,9 @@ brew install bash bc coreutils gawk gh glab gsed jq nowplaying-cli
 brew install --cask nikitabobko/tap/aerospacebrew install --cask nikitabobko/tap/aerospace
 # Install Oh my Posh
 brew install jandedobbeleer/oh-my-posh/oh-my-posh
+# Install macsim for NeoVim
+brew tap laishulu/homebrew
+brew install macism
 
 # Rust install
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
