@@ -1,5 +1,8 @@
 theme = Solarized Dark - Patched
 font-family = JetBrainsMono NFM SemiBold
 font-size = 16
+macos-titlebar-style = hidden
 macos-titlebar-proxy-icon = hidden
 title = " "
+mouse-hide-while-typing = true
+link-url = true
