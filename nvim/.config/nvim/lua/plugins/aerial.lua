@@ -8,7 +8,7 @@ return {
 	},
 	keys = {
 		{
-			"<leader>z",
+			"<leader>q",
 			"<cmd>AerialToggle!<Cr>",
 		},
 	},
