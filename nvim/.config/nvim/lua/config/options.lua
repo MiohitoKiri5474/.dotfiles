@@ -40,3 +40,5 @@ vim.opt.splitright = true
 vim.opt.splitkeep = "cursor"
 
 vim.opt.formatoptions:append({ "r" })
+
+vim.api.nvim_set_option("clipboard", "unnamed")
