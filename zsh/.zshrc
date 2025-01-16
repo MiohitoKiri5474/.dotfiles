@@ -123,8 +123,15 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Created by `pipx` on 2024-12-17 13:04:31
-export PATH="$PATH:/Users/miohitokiri5474/.local/bin"
-autoload -U bashcompinit
-bashcompinit
-eval "$(register-python-argcomplete pipx)"
+# # Created by `pipx` on 2024-12-17 13:04:31
+# export PATH="$PATH:/Users/miohitokiri5474/.local/bin"
+# autoload -U bashcompinit
+# bashcompinit
+# eval "$(register-python-argcomplete pipx)"
+#
+if [ "$(arch)" = "arm64" ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+    eval "$(/usr/local/bin/brew shellenv)"
+fi
+export PATH="/opt/homebrew/opt/gnu-getopt/bin:$PATH"
