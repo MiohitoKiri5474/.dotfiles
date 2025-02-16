@@ -1,7 +1,7 @@
 local utils = require("new-file-template.utils")
 
 local function base_template(relative_path, filename)
-	return [[
+  return [[
 // by. MiohitoKiri5474
 #include <bits/stdc++.h>
 
@@ -51,9 +51,9 @@ end
 ---   - `relative_path` (string): The relative path of the new file, e.g., "lua/new-file-template/templates/init.lua".
 ---   - `filename` (string): The filename of the new file, e.g., "init.lua".
 return function(opts)
-	local template = {
-		{ pattern = ".*", content = base_template },
-	}
+  local template = {
+    { pattern = ".*", content = base_template },
+  }
 
-	return utils.find_entry(template, opts)
+  return utils.find_entry(template, opts)
 end
