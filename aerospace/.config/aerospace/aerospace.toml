@@ -124,6 +124,7 @@ alt-a = 'workspace A' # Arc Browser
 alt-d = 'workspace D' # Discord
 alt-s = 'workspace S' # Spotify
 alt-t = 'workspace T' # Terminal
+alt-c = 'workspace C' # Chrome & ChatGPT
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = ['move-node-to-workspace 1', 'workspace 1']
@@ -135,6 +136,7 @@ alt-shift-a = ['move-node-to-workspace A', 'workspace A']
 alt-shift-d = ['move-node-to-workspace D', 'workspace D']
 alt-shift-s = ['move-node-to-workspace S', 'workspace S']
 alt-shift-t = ['move-node-to-workspace T', 'workspace T']
+alt-shift-c = ['move-node-to-workspace C', 'workspace C']
 
 alt-shift-f = 'fullscreen'
 
@@ -176,6 +178,16 @@ run = 'move-node-to-workspace T'
 [[on-window-detected]]
 if.app-id = 'company.thebrowser.Browser'
 run = 'move-node-to-workspace A'
+
+# Google Chrome
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+run = 'move-node-to-workspace C'
+
+# OpenAI ChatGPT
+[[on-window-detected]]
+if.app-id = 'com.openai.chat'
+run = 'move-node-to-workspace C'
 
 # Spotify
 [[on-window-detected]]
