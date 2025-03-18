@@ -1,8 +1,8 @@
 return {
-	{
-		"otavioschwanck/new-file-template.nvim",
-		lazy = true,
-		opts = {},
-		event = "BufNewFile",
-	},
+  {
+    "otavioschwanck/new-file-template.nvim",
+    lazy = true,
+    opts = {},
+    event = "BufNewFile",
+  },
 }
