@@ -135,3 +135,4 @@ else
     eval "$(/usr/local/bin/brew shellenv)"
 fi
 export PATH="/opt/homebrew/opt/gnu-getopt/bin:$PATH"
+export PATH="/Library/TeX/texbin:$PATH"
