@@ -1,4 +1,5 @@
 set synctex true
+set synctex-editor-command "nvim --server /tmp/nvim.pipe --remote-expr 'vimtex#view#reverse_goto(@line, \"@tex\")'"
 set statusbar-h-padding 0
 set font 'ubuntumono normal 14'
 map u scroll half-u
