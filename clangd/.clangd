@@ -1,5 +1,6 @@
-{
-  "CompileFlags": {
-    Add: [-std=c++17]
-  }
-}
+---
+If:
+    PathExclude: [.*\.c, .*\.h]
+CompileFlags:
+    Add:
+      - "-std=c++17"
