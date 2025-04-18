@@ -14,6 +14,7 @@ return {
         "-synctex=1",
       },
     }
+    vim.g.vimtex_format_enabled = 1
   end,
   keys = {
     {
