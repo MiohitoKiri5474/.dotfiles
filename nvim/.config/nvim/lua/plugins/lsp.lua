@@ -37,6 +37,8 @@ return {
           "shellcheck",
           -- Vue related
           "vue-language-server",
+          -- Rust related
+          "rust-analyzer",
         })
       end
     end,
