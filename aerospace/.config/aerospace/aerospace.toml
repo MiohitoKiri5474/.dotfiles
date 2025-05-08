@@ -121,6 +121,7 @@ alt-3 = 'workspace 3'
 alt-4 = 'workspace 4'
 alt-5 = 'workspace 5'
 alt-a = 'workspace A' # Arc Browser
+alt-t = 'workspace C' # ChatGPT
 alt-d = 'workspace D' # Discord
 alt-s = 'workspace S' # Spotify
 alt-t = 'workspace T' # Terminal
@@ -132,6 +133,7 @@ alt-shift-3 = ['move-node-to-workspace 3', 'workspace 3']
 alt-shift-4 = ['move-node-to-workspace 4', 'workspace 4']
 alt-shift-5 = ['move-node-to-workspace 5', 'workspace 5']
 alt-shift-a = ['move-node-to-workspace A', 'workspace A']
+alt-shift-a = ['move-node-to-workspace C', 'workspace C']
 alt-shift-d = ['move-node-to-workspace D', 'workspace D']
 alt-shift-s = ['move-node-to-workspace S', 'workspace S']
 alt-shift-t = ['move-node-to-workspace T', 'workspace T']
@@ -184,6 +186,11 @@ run = 'move-node-to-workspace A'
 [[on-window-detected]]
 if.app-id = 'app.zen-browser.zen'
 run = 'move-node-to-workspace A'
+
+# ChatGPT
+[[on-window-detected]]
+if.app-id = 'com.openai.chat'
+run = 'move-node-to-workspace C'
 
 # Spotify
 [[on-window-detected]]
