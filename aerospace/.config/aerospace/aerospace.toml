@@ -180,6 +180,11 @@ run = 'move-node-to-workspace T'
 if.app-id = 'company.thebrowser.Browser'
 run = 'move-node-to-workspace A'
 
+# Zen Browser
+[[on-window-detected]]
+if.app-id = 'app.zen-browser.zen'
+run = 'move-node-to-workspace A'
+
 # Spotify
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
