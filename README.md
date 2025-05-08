@@ -10,14 +10,6 @@ These are the minimal configuration.
 
 This configuration is base on [LazyVim](lazyvim.org) with some modify.
 
-![cover](/images/cover.png)
-![fuzzy](/images/fuzzy.png)
-![fzf](/imagus/fzf.png)
-![syntax-error](/images/syntax-error.png)
-![tag](/images/tag.png)
-![terminal-split](/images/terminal-split.png)
-![test](/images/test.png)
-
 ## Requirements
 
 - Neovim >= **0.9.0** (needs to be built with **LuaJIT**)
@@ -50,18 +42,15 @@ This configuration is base on [LazyVim](lazyvim.org) with some modify.
 2. Install packages with brew.
 
 ```sh
-# Install all package in Brewfile
-brew bundle --file ./Brewfile
-
-# Install essential package only
+# Install essential package
 brew tap zegervdv/zathura
-brew install neovim tmux yazi hammerspoon karabiner-elements yazi zathura btop bat wget eza
+brew install neovim tmux yazi hammerspoon karabiner-elements yazi zathura btop bat wget eza ghostty
 # Install require pacakge for telescope (neovim plugin)
 brew install fd ripgrep
 # Install require package for tmux theme
 brew install bash bc coreutils gawk gh glab gsed jq nowplaying-cli
 # Install Aerospace
-brew install --cask nikitabobko/tap/aerospace
+brew install nikitabobko/tap/aerospace
 # Install Oh my Posh
 brew install jandedobbeleer/oh-my-posh/oh-my-posh
 # Install macsim for NeoVim
@@ -70,6 +59,10 @@ brew install macism
 
 # Rust install
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# NodeJS install, including nvm, npm and nodejs
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+brew install nodejs
 ```
 
 3. Clone dotfiles into home folder at localhost.
@@ -82,9 +75,11 @@ git clone https://github.com/MiohitoKiri5474/.dotfiles.git
 
 ```sh
 cd .dotfiles
-stow zsh nvim tmux clangd tmux zathura yazi hammerspoon aerospace karabiner
-```
 
-6. Replace iTerm2 colorscheme with [Solarized](https://github.com/altercation/solarized) and pick a nerd font.
-   > I prefer darker background. Here is my background color Hex code: #06191f.
-   > The nerd font I'm using is JetBrainMono Nerd Font Mono.
+# Link .zshrc with your OS version: ARM or x86_64
+# These configuration files are different with the path of HomeBrew.
+ln zsh/.zshrc-x86 zsh/.zshrc
+ln zsh/.zshrc-arm zsh/.zshrc
+
+stow zsh nvim tmux clangd tmux zathura yazi hammerspoon aerospace karabiner ghostty
+```
