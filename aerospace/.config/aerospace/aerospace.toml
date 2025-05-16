@@ -177,14 +177,14 @@ run = [
 if.app-id = 'com.torusknot.SourceTreeNotMAS'
 run = 'move-node-to-workspace T'
 
+# Safari
+[[on-window-detected]]
+if.app-id = 'com.apple.Safari'
+run = 'move-node-to-workspace A'
+
 # Arc Browser
 [[on-window-detected]]
 if.app-id = 'company.thebrowser.Browser'
-run = 'move-node-to-workspace A'
-
-# Zen Browser
-[[on-window-detected]]
-if.app-id = 'app.zen-browser.zen'
 run = 'move-node-to-workspace A'
 
 # ChatGPT
