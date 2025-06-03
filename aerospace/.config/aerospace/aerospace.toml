@@ -204,7 +204,7 @@ run = 'move-node-to-workspace D'
 
 # Messenger
 [[on-window-detected]]
-if.app-id = 'com.facebook.archon.developerID'
+if.app-id = 'com.facebook.archon'
 run = 'move-node-to-workspace D'
 
 # Line
