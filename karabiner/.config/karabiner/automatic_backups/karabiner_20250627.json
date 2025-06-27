@@ -513,65 +513,6 @@
                         "product_id": 4626,
                         "vendor_id": 65261
                     }
-                },
-                {
-                    "fn_function_keys": [
-                        {
-                            "from": { "key_code": "f1" },
-                            "to": [{ "apple_vendor_keyboard_key_code": "brightness_down" }]
-                        },
-                        {
-                            "from": { "key_code": "f2" },
-                            "to": [{ "apple_vendor_keyboard_key_code": "brightness_up" }]
-                        },
-                        {
-                            "from": { "key_code": "f3" },
-                            "to": [{ "apple_vendor_keyboard_key_code": "mission_control" }]
-                        },
-                        {
-                            "from": { "key_code": "f4" },
-                            "to": [{ "apple_vendor_keyboard_key_code": "launchpad" }]
-                        },
-                        {
-                            "from": { "key_code": "f5" },
-                            "to": [{ "key_code": "vk_none" }]
-                        },
-                        {
-                            "from": { "key_code": "f6" },
-                            "to": [{ "key_code": "vk_none" }]
-                        },
-                        {
-                            "from": { "key_code": "f7" },
-                            "to": [{ "consumer_key_code": "rewind" }]
-                        },
-                        {
-                            "from": { "key_code": "f8" },
-                            "to": [{ "consumer_key_code": "play_or_pause" }]
-                        },
-                        {
-                            "from": { "key_code": "f9" },
-                            "to": [{ "consumer_key_code": "fast_forward" }]
-                        },
-                        {
-                            "from": { "key_code": "f10" },
-                            "to": [{ "consumer_key_code": "mute" }]
-                        },
-                        {
-                            "from": { "key_code": "f11" },
-                            "to": [{ "consumer_key_code": "volume_decrement" }]
-                        },
-                        {
-                            "from": { "key_code": "f12" },
-                            "to": [{ "consumer_key_code": "volume_increment" }]
-                        }
-                    ],
-                    "identifiers": { "is_keyboard": true },
-                    "simple_modifications": [
-                        {
-                            "from": { "key_code": "caps_lock" },
-                            "to": [{ "key_code": "left_control" }]
-                        }
-                    ]
                 }
             ],
             "fn_function_keys": [
