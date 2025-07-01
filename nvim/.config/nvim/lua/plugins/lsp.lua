@@ -32,6 +32,7 @@ return {
           "eslint_d",
           "oxlint",
           "prettier",
+          "prettierd",
           -- sh related
           "shfmt",
           "shellcheck",
