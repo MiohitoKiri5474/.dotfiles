@@ -35,6 +35,7 @@ dailyUpdate() {
     speedtest
     brew update
     brew upgrade
+    brew cleanup
     zinit self-update
     zinit update --parallel 10
 }
