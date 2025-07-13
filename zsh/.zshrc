@@ -85,7 +85,6 @@ zinit lucid wait for \
     OMZL::termsupport.zsh \
     OMZL::functions.zsh \
     OMZ::plugins/web-search/web-search.plugin.zsh
-    # OMZL::theme-and-appearance.zsh \
 
 
 zsh-defer export_init
@@ -106,16 +105,6 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
 
-# yazi support
-function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		builtin cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
-}
-
 function set_poshcontext() {
     export POSH=$(date)
 }
@@ -124,17 +113,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# # Created by `pipx` on 2024-12-17 13:04:31
-# export PATH="$PATH:/Users/miohitokiri5474/.local/bin"
-# autoload -U bashcompinit
-# bashcompinit
-# eval "$(register-python-argcomplete pipx)"
-#
-if [ "$(arch)" = "arm64" ]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-else
-    eval "$(/usr/local/bin/brew shellenv)"
-fi
+eval "$(/opt/homebrew/bin/brew shellenv)"
 export PATH="/opt/homebrew/opt/gnu-getopt/bin:$PATH"
 export PATH="/Library/TeX/texbin:$PATH"
 
