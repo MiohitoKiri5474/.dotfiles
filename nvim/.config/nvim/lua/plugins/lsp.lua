@@ -160,7 +160,64 @@ return {
           },
         },
       },
-      setup = {},
+      setup = {
+        pyright = function(_, opts)
+          opts.settings = {
+
+            python = {
+              pythonPath = (function()
+                local executable_name = "python"
+
+                -- 1. Fast path: $VIRTUAL_ENV
+                if vim.env.VIRTUAL_ENV then
+                  local candidate = vim.env.VIRTUAL_ENV .. "/bin/" .. executable_name
+                  if vim.fn.filereadable(candidate) == 1 then
+                    return candidate
+                  end
+                end
+
+                -- 2. Fast path: local `.venv` in project root
+                local venv_dir = vim.fn.finddir(".venv", ".;")
+                if venv_dir ~= "" then
+                  local candidate = venv_dir .. "/bin/" .. executable_name
+                  if vim.fn.filereadable(candidate) == 1 then
+                    return candidate
+                  end
+                end
+
+                -- 3. Fallback: if poetry.lock exists, run poetry (slow, but only when needed)
+                local poetry_lock = vim.fn.findfile("poetry.lock", ".;")
+                if poetry_lock ~= "" then
+                  local poetry_envs =
+                    vim.fn.systemlist("poetry env list --full-path -C " .. vim.fn.fnamemodify(poetry_lock, ":h"))
+                  for _, env_path in ipairs(poetry_envs) do
+                    if env_path ~= "" and env_path:sub(1, 1) == "/" then
+                      env_path = env_path:gsub(" %(Activated%)", ""):gsub("%s+$", "")
+                      local candidate = env_path .. "/bin/" .. executable_name
+                      if vim.fn.filereadable(candidate) == 1 then
+                        return candidate
+                      end
+                    end
+                  end
+                end
+
+                -- 4. Last fallback: Mason
+                local mason_registry = require("mason-registry")
+                if mason_registry.has_package(executable_name) then
+                  return mason_registry.get_package(executable_name):get_install_path()
+                    .. "/venv/bin/"
+                    .. executable_name
+                end
+
+                return executable_name
+              end)(),
+              analysis = { diagnosticMode = "off", typeCheckingMode = "off" },
+            },
+          }
+          require("lspconfig").pyright.setup(opts)
+          return true
+        end,
+      },
     },
   },
   "nvim-lua/lsp-status.nvim",
