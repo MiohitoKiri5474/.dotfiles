@@ -81,11 +81,6 @@ git clone https://github.com/MiohitoKiri5474/.dotfiles.git
 ```sh
 cd .dotfiles
 
-# Link .zshrc with your OS version: ARM or x86_64
-# These configuration files are different with the path of HomeBrew.
-ln zsh/.zshrc-x86 zsh/.zshrc
-ln zsh/.zshrc-arm zsh/.zshrc
-
 stow zsh nvim tmux clangd zathura yazi hammerspoon aerospace karabiner ghostty
 ```
 
