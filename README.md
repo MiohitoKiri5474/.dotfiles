@@ -44,7 +44,7 @@ This configuration is base on [LazyVim](lazyvim.org) with some modify.
 ```sh
 # Install essential package
 brew tap zegervdv/zathura
-brew install neovim tmux yazi hammerspoon karabiner-elements yazi zathura btop bat wget eza ghostty
+brew install neovim tmux hammerspoon karabiner-elements zathura btop bat wget eza ghostty
 # Install require pacakge for telescope (neovim plugin)
 brew install fd ripgrep
 # Install require package for tmux theme
