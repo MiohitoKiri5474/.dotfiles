@@ -11,6 +11,3 @@ macos-icon = custom-style
 macos-icon-frame = plastic
 macos-icon-ghost-color = #9cc2c3
 macos-icon-screen-color = #003748
-
-background-opacity = 0.75
-background-blur-radius = 20
