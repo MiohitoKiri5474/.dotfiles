@@ -99,7 +99,7 @@ sudo apt install neovim bat tmux eza wget btop stow unzip zip
 sudo apt install fd-find ripgrep
 
 # Install require package for tmux theme
-sudo apt-get install bash bc coreutils gawk git jq playerctl
+sudo apt install bash bc coreutils gawk git jq playerctl
 
 # Install Oh my Posh
 curl -s https://ohmyposh.dev/install.sh | bash -s
