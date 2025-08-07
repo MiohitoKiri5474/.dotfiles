@@ -44,7 +44,7 @@ This configuration is base on [LazyVim](lazyvim.org) with some modify.
 ```sh
 # Install essential package
 brew tap zegervdv/zathura
-brew install neovim tmux hammerspoon karabiner-elements zathura btop bat wget eza ghostty stow clangd
+brew install neovim tmux hammerspoon karabiner-elements zathura btop bat wget eza ghostty stow clangd fzf pyenv
 
 # Install require pacakge for telescope (neovim plugin)
 brew install fd ripgrep
@@ -62,7 +62,7 @@ brew install jandedobbeleer/oh-my-posh/oh-my-posh
 brew tap laishulu/homebrew
 brew install macism
 
-# Rust install
+# Install Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # NodeJS install, including nvm, npm and nodejs
@@ -93,7 +93,7 @@ stow zsh nvim tmux clangd zathura yazi hammerspoon aerospace karabiner ghostty
 ```sh
 # install neovim nightly instead of stable version for some extra features
 sudo add-apt-repository ppa:neovim-ppa/unstable
-sudo apt install neovim bat tmux eza wget btop stow unzip zip
+sudo apt install neovim bat tmux eza wget btop stow unzip zip fzf
 
 # Install require pacakge for telescope (neovim plugin)
 sudo apt install fd-find ripgrep
@@ -104,8 +104,11 @@ sudo apt install bash bc coreutils gawk git jq playerctl
 # Install Oh my Posh
 curl -s https://ohmyposh.dev/install.sh | bash -s
 
-# Rust install
+# Install Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# Install pyenv
+curl -fsSL https://pyenv.run | bash
 
 #NodeJS install, including nvm, npm and nodejs
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
