@@ -4,43 +4,28 @@ return {
     optional = true,
     opts = function(_, opts)
       if type(opts.ensure_installed) == "table" then
-        vim.list_extend(opts.ensure_installed, {
-          -- Lua related
-          "lua-language-server",
-          "stylua",
-          "luacheck",
-          -- C/C++ related
-          "clangd",
-          "clang-format",
-          -- Golang related
-          "gopls",
-          "golangci-lint-langserver",
-          -- Python related
-          "pyright",
-          "black",
-          "isort",
-          -- LaTeX related
-          "ltex-ls",
-          "latexindent",
-          -- CSS related
-          "typescript-language-server",
-          "css-lsp",
-          -- TailWindCSS related
-          "tailwindcss-language-server",
-          "astro-language-server",
-          -- JavaScript related
-          "eslint_d",
-          "oxlint",
-          "prettier",
-          "prettierd",
-          -- sh related
-          "shfmt",
-          "shellcheck",
-          -- Vue related
-          "vue-language-server",
-          -- Rust related
-          "rust-analyzer",
-        })
+        -- Lua related
+        vim.list_extend(opts.ensure_installed, { "lua-language-server", "stylua", "luacheck" })
+        -- C/C++ related
+        vim.list_extend(opts.ensure_installed, { "clangd", "clang-format" })
+        -- Golang related
+        vim.list_extend(opts.ensure_installed, { "gopls", "golangci-lint-langserver" })
+        -- Python related
+        vim.list_extend(opts.ensure_installed, { "pyright", "black", "isort" })
+        -- LaTeX related
+        vim.list_extend(opts.ensure_installed, { "ltex-ls", "latexindent" })
+        -- CSS related
+        vim.list_extend(opts.ensure_installed, { "typescript-language-server", "css-lsp" })
+        -- TailWindCSS related
+        vim.list_extend(opts.ensure_installed, { "tailwindcss-language-server", "astro-language-server" })
+        -- JavaScript related
+        vim.list_extend(opts.ensure_installed, { "eslint_d", "oxlint", "prettier", "prettierd" })
+        -- sh related
+        vim.list_extend(opts.ensure_installed, { "shfmt", "shellcheck" })
+        -- Vue related
+        vim.list_extend(opts.ensure_installed, { "vue-language-server" })
+        -- Rust related
+        vim.list_extend(opts.ensure_installed, { "rust-analyzer" })
       end
     end,
   },
