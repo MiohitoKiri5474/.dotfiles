@@ -131,7 +131,9 @@ stow zsh nvim tmux clangd
 
 ### ArchLinux
 
-> I only install necessary package (editor, shell, tmux etc.) on Ubuntu because I only use it for remote server.
+> This script has not been verified yet.
+
+> I only install necessary package (editor, shell, tmux etc.) on ArchLinux because I only use it for remote server.
 
 1. Install packages with apt.
 
