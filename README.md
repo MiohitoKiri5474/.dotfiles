@@ -46,8 +46,8 @@ This configuration is base on [LazyVim](lazyvim.org) with some modify.
 brew tap zegervdv/zathura
 brew install neovim tmux hammerspoon karabiner-elements zathura btop bat wget eza ghostty stow clangd fzf pyenv
 
-# Install require pacakge for telescope (neovim plugin)
-brew install fd ripgrep
+# Install require pacakge for neovim plugins (telescope etc.)
+brew install fd ripgrep luarocks
 
 # Install require package for tmux theme
 brew install bash bc coreutils gawk gh glab gsed jq nowplaying-cli
@@ -93,10 +93,10 @@ stow zsh nvim tmux clangd zathura yazi hammerspoon aerospace karabiner ghostty
 ```sh
 # install neovim nightly instead of stable version for some extra features
 sudo add-apt-repository ppa:neovim-ppa/unstable
-sudo apt install neovim bat tmux eza wget btop stow unzip zip fzf
+sudo apt install neovim bat tmux eza wget btop stow unzip zip fzf luarocks
 
-# Install require pacakge for telescope (neovim plugin)
-sudo apt install fd-find ripgrep
+# Install require pacakge for neovim plugins (telescope etc.)
+sudo apt install fd-find ripgrep luarocks
 
 # Install require package for tmux theme
 sudo apt install bash bc coreutils gawk git jq playerctl
@@ -113,6 +113,58 @@ curl -fsSL https://pyenv.run | bash
 #NodeJS install, including nvm, npm and nodejs
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 sudo apt install nodejs npm
+```
+
+2. Clone dotfiles into home folder at localhost.
+
+```sh
+git clone https://github.com/MiohitoKiri5474/.dotfiles.git
+```
+
+3. Use stow to deploy all config files.
+
+```sh
+cd .dotfiles
+
+stow zsh nvim tmux clangd
+```
+
+### ArchLinux
+
+> I only install necessary package (editor, shell, tmux etc.) on Ubuntu because I only use it for remote server.
+
+1. Install packages with apt.
+
+```sh
+# install yay
+sudo pacman -S git base-devel
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+cd ~
+
+# install neovim nightly instead of stable version for some extra features
+yay -S neovim-nightly
+sudo pacman -S bat tmux eza wget btop stow unzip zip fzf luarocks
+
+# Install require pacakge for neovim plugins (telescope etc.)
+sudo pacman -S fd-find ripgrep luarocks
+
+# Install require package for tmux theme
+sudo pacman -S bash bc coreutils gawk git jq playerctl
+
+# Install Oh my Posh
+curl -s https://ohmyposh.dev/install.sh | bash -s
+
+# Install Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# Install pyenv
+curl -fsSL https://pyenv.run | bash
+
+#NodeJS install, including nvm, npm and nodejs
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+sudo pacman -S install nodejs npm
 ```
 
 2. Clone dotfiles into home folder at localhost.
