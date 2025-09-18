@@ -147,7 +147,7 @@ cd ~
 
 # install neovim nightly instead of stable version for some extra features
 yay -S neovim-nightly
-sudo pacman -S bat tmux eza wget btop stow unzip zip fzf luarocks
+sudo pacman -S bat tmux eza wget btop stow unzip zip fzf
 
 # Install require pacakge for neovim plugins (telescope etc.)
 sudo pacman -S fd-find ripgrep luarocks
@@ -166,7 +166,7 @@ curl -fsSL https://pyenv.run | bash
 
 #NodeJS install, including nvm, npm and nodejs
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
-sudo pacman -S install nodejs npm
+sudo pacman -S nodejs npm
 ```
 
 2. Clone dotfiles into home folder at localhost.
