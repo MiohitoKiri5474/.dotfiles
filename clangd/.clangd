@@ -1,6 +1,7 @@
 ---
 If:
-    PathExclude: [.*\.c, .*\.h]
+  PathExclude: [.*\.c, .*\.h]
 CompileFlags:
-    Add:
-      - "-std=c++17"
+  Add:
+    - "-std=c++17"
+    - "-I/opt/homebrew/Cellar/open-mpi/5.0.8/include"
