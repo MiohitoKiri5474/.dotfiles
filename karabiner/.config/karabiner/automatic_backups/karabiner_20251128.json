@@ -540,11 +540,11 @@
                         },
                         {
                             "from": { "key_code": "f5" },
-                            "to": [{ "key_code": "f5" }]
+                            "to": [{ "key_code": "vk_none" }]
                         },
                         {
                             "from": { "key_code": "f6" },
-                            "to": [{ "key_code": "f6" }]
+                            "to": [{ "key_code": "vk_none" }]
                         },
                         {
                             "from": { "key_code": "f7" },
