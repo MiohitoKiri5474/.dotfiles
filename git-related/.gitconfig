@@ -1,5 +1,6 @@
 [core]
 	editor = nvim
+    pager = delta
 	excludesfile = /Users/miohitokiri5474/.gitignore_global
 [user]
 	mall = lltzpp@gmail.com
@@ -24,3 +25,15 @@
 	template = /Users/miohitokiri5474/.stCommitMsg
 [pull]
 	rebase = true
+
+[delta]
+    navigate = true
+    side-by-side = true
+[interactive]
+    diffFilter = delta --color-only
+
+[merge]
+    confilictstyle = diff3
+
+[diff]
+    colorMoved = default
