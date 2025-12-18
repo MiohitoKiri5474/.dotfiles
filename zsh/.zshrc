@@ -31,13 +31,18 @@ export_init() {
     export PATH=$N_PREFIX/bin:$PATH
 }
 
+nvimUpdate() {
+    nvim --headless "+Lazy! sync" +qa
+}
+
+
 dailyUpdate() {
-    speedtest
     brew update
     brew upgrade
-    brew cleanup
+    brew cleanup &
+    nvimUpdate &
     zinit self-update
-    zinit update --parallel 10
+    zinit update --parallel 3
 }
 
 create_latex_template() {
