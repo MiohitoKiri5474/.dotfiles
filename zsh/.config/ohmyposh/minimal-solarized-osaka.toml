@@ -1,73 +1,70 @@
 console_title_template = ' {{ .Folder }} {{if .Root}} :: Admin{{end}}'
-version = 3
+version = 4
 final_space = true
 
-[[blocks]]
-type = 'prompt'
-alignment = 'left'
-newline = true
-
-[[blocks.segments]]
-foreground = 'magenta'
-type = 'path'
-style = 'plain'
-template = '{{.Path}} '
-
-[blocks.segments.properties]
-style = 'full'
-
-[[blocks.segments]]
-type = 'git'
-style = 'plain'
-template = '<#5c6d74>on</> <green>{{.HEAD}}{{if (gt .Behind 0)}} 󰜮{{.Behind}}{{end}}{{if (gt .Ahead 0)}} 󰜷{{.Ahead}}{{end}}</><magenta>{{if .Working.Added}} +{{.Working.Added}}{{end}}</><p:light-sky-blue>{{if .Working.Modified}} ~{{.Working.Modified}}{{end}}</><yellow>{{if .Working.Untracked}} !{{.Working.Untracked}}{{end}}</><red>{{if .Working.Deleted}} -{{.Working.Deleted}}{{end}}</>'
-
-[blocks.segments.properties]
-fetch_status = true
-fetch_upstream_icon = true
-source = "cli"
-
-[[blocks.segments]]
-type = "python"
-style = "powerline"
-template = " <#5c6d74>with</> <#519e97> {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}</> "
-
-[[blocks]]
-type = 'prompt'
-alignment = 'right'
-overflow = 'hidden'
-
-[[blocks.segments]]
-type = 'executiontime'
-style = 'powerline'
-foreground = '#5c6d74'
-template = 'took {{.FormattedMs}}'
-
-[blocks.segments.properties]
-threshold = 500
-style = 'austin'
-
-[[blocks.segments]]
-template = ' '
-foreground = 'red'
-type = 'status'
-style = 'plain'
-
-[[blocks]]
-type = 'prompt'
-alignment = 'left'
-newline = true
-
-[[blocks.segments]]
-type = 'text'
-style = 'plain'
-background = 'transparent'
-foreground_templates = [
-    '{{if gt .Code 0}}red{{end}}',
-    '{{if eq .Code 0}}cyan{{end}}',
-]
-template = "❯"
-
 [secondary_prompt]
-background = 'transparent'
-foreground = 'cyan'
-template = '❯❯'
+  template = '❯❯'
+  foreground = 'cyan'
+  background = 'transparent'
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    template = '{{.Path}} '
+    foreground = 'magenta'
+    type = 'path'
+    style = 'plain'
+
+    [blocks.segments.options]
+      style = 'full'
+
+  [[blocks.segments]]
+    template = '<#5c6d74>on</> <green>{{.HEAD}}{{if (gt .Behind 0)}} 󰜮{{.Behind}}{{end}}{{if (gt .Ahead 0)}} 󰜷{{.Ahead}}{{end}}</><magenta>{{if .Working.Added}} +{{.Working.Added}}{{end}}</><p:light-sky-blue>{{if .Working.Modified}} ~{{.Working.Modified}}{{end}}</><yellow>{{if .Working.Untracked}} !{{.Working.Untracked}}{{end}}</><red>{{if .Working.Deleted}} -{{.Working.Deleted}}{{end}}</>'
+    type = 'git'
+    style = 'plain'
+
+    [blocks.segments.options]
+      fetch_status = true
+      fetch_upstream_icon = true
+      source = 'cli'
+
+  [[blocks.segments]]
+    template = ' <#5c6d74>with</> <#519e97> {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}</> '
+    type = 'python'
+    style = 'powerline'
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'right'
+  overflow = 'hidden'
+
+  [[blocks.segments]]
+    template = 'took {{.FormattedMs}}'
+    foreground = '#5c6d74'
+    type = 'executiontime'
+    style = 'powerline'
+
+    [blocks.segments.options]
+      style = 'austin'
+      threshold = 500
+
+  [[blocks.segments]]
+    template = ' '
+    foreground = 'red'
+    type = 'status'
+    style = 'plain'
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    template = '❯'
+    background = 'transparent'
+    type = 'text'
+    style = 'plain'
+    foreground_templates = ['{{if gt .Code 0}}red{{end}}', '{{if eq .Code 0}}cyan{{end}}']
