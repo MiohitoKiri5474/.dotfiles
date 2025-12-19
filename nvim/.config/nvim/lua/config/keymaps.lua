@@ -11,12 +11,7 @@ keymap.set("i", "<C-q>", "<esc>:q!<Return>", opt)
 keymap.set("n", "<C-s>", ":w<Return>", opt)
 keymap.set("i", "<C-s>", "<esc>:w<Return>", opt)
 
-keymap.set("n", "+", "<C-a>")
-keymap.set("n", "-", "<C-x>")
-
 keymap.set("n", "te", ":tabedit<Return>", opt)
-keymap.set("n", "<tab>", ":tabnext<Return>", opt)
-keymap.set("n", "<s-tab>", ":tabprev<Return>", opt)
 
 keymap.set("n", "<leader>cp", "gg0vG$y<Return>", opt)
 
