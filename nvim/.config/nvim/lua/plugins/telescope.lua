@@ -9,15 +9,7 @@ return {
   },
   keys = {
     {
-      "<leader>fP",
-      function()
-        require("telescope.builtin").find_files({
-          cwd = require("lazy.core.config").options.root,
-        })
-      end,
-    },
-    {
-      ";f",
+      "<leader>ff",
       function()
         local builtin = require("telescope.builtin")
         builtin.find_files({
@@ -27,7 +19,7 @@ return {
       end,
     },
     {
-      "sf",
+      "<leader>sf",
       function()
         local telescope = require("telescope")
 
@@ -47,20 +39,28 @@ return {
         })
       end,
     },
+    {
+      "<leader>fu",
+      function()
+        local builtin = require("telescope.builtin")
+        builtin.treesitter()
+      end,
+      desc = "Lists Function names, variables, from Treesitter",
+    },
+    {
+      "<leader>fg",
+      function()
+        local builtin = require("telescope.builtin")
+        builtin.live_grep()
+      end,
+      desc = "Find text (live grep)",
+    },
   },
   config = function(_, opts)
     local telescope = require("telescope")
     local actions = require("telescope.actions")
-    local fb_actions = require("telescope").extensions.file_browser.actions
+    local file_browser_actions = require("telescope").extensions.file_browser.actions
 
-    -- opts.defaults = vim.tbl_deep_extend("force", opts.defaults, {
-    -- 	wrap_results = true,
-    -- 	layout_strategy = "horizontal",
-    -- 	layout_config = { prompt_position = "top" },
-    -- 	sorting_strategy = "ascending",
-    -- 	winblend = 0,
-    -- 	mappings = {},
-    -- })
     opts.pickers = {
       diagnostics = {
         theme = "ivy",
@@ -71,14 +71,6 @@ return {
       },
     }
     opts.extensions = {
-      aerial = {
-        -- Display symbols as <root>.<parent>.<symbol>
-        show_nesting = {
-          ["_"] = false, -- This key will be the default
-          json = true, -- You can set the option for specific filetypes
-          yaml = true,
-        },
-      },
       file_browser = {
         theme = "dropdown",
         -- disables netrw and use telescope-file-browser in its place
@@ -87,8 +79,8 @@ return {
           -- your custom insert mode mappings
           ["n"] = {
             -- your custom normal mode mappings
-            ["N"] = fb_actions.create,
-            ["h"] = fb_actions.goto_parent_dir,
+            ["N"] = file_browser_actions.create,
+            ["h"] = file_browser_actions.goto_parent_dir,
             ["/"] = function()
               vim.cmd("startinsert")
             end,

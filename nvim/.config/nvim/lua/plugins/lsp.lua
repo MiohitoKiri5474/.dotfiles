@@ -213,4 +213,50 @@ return {
       table.insert(opts.sources, { name = "emoji" })
     end,
   },
+  {
+    "lervag/vimtex",
+    lazy = false, -- Load VimTeX on startup
+    config = function()
+      vim.g.vimtex_view_general_viewer = "zathura"
+      vim.g.vimtex_view_zathura_options = "-reuse-instance"
+      vim.g.tex_flavor = "latex"
+      vim.g.vimtex_view_synctex = true
+      vim.g.vimtex_compiler_method = "latexmk"
+    end,
+    keys = {
+      {
+        "<leader>vt",
+        ":VimtexCompile<Return>",
+      },
+    },
+  },
+  {
+    "3rd/image.nvim",
+  },
+  {
+    "stevearc/conform.nvim",
+    optional = true,
+    opts = {
+      formatters_by_ft = {
+        c = { "clang_format" },
+        h = { "clang_format" },
+        lua = { "stylua" },
+        go = { "gofumpt" },
+        python = { "isort", "black" },
+        tex = { "latexindent" },
+        mjs = { "eslint_d" },
+        html = { "prettier" },
+        astro = { "prettier" },
+        javascript = { "prettier" },
+      },
+    },
+    keys = {
+      {
+        "<leader>ft",
+        function()
+          require("conform").format()
+        end,
+      },
+    },
+  },
 }
