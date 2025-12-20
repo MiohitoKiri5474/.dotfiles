@@ -64,25 +64,21 @@ if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
 fi
 
 
-zinit light-mode for romkatv/zsh-defer
+zinit light-mode for \
+    OMZL::history.zsh \
+    zsh-users/zsh-history-substring-search \
+    romkatv/zsh-defer
+
 zinit wait lucid for \
     zdharma-continuum/zinit-annex-as-monitor \
     zdharma-continuum/zinit-annex-bin-gem-node \
     zdharma-continuum/zinit-annex-patch-dl \
-    zdharma-continuum/zinit-annex-rust
-
-
-zinit wait lucid for \
+    zdharma-continuum/zinit-annex-rust \
     zsh-users/zsh-completions \
     zsh-users/zsh-autosuggestions \
-    zsh-users/zsh-history-substring-search \
     zdharma-continuum/fast-syntax-highlighting \
-    agkozak/zsh-z
-
-
-zinit wait lucid for \
+    agkozak/zsh-z \
     OMZL::completion.zsh \
-    OMZL::history.zsh \
     OMZL::key-bindings.zsh \
     OMZL::git.zsh \
     OMZ::plugins/git/git.plugin.zsh \
