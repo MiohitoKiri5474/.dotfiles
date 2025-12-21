@@ -67,9 +67,7 @@ fi
 zinit light-mode for \
     OMZL::history.zsh \
     zsh-users/zsh-history-substring-search \
-    romkatv/zsh-defer
-
-zinit wait lucid for \
+    romkatv/zsh-defer \
     zdharma-continuum/zinit-annex-as-monitor \
     zdharma-continuum/zinit-annex-bin-gem-node \
     zdharma-continuum/zinit-annex-patch-dl \
