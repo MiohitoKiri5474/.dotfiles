@@ -68,3 +68,9 @@ final_space = true
     type = 'text'
     style = 'plain'
     foreground_templates = ['{{if gt .Code 0}}red{{end}}', '{{if eq .Code 0}}cyan{{end}}']
+
+[upgrade]
+notice = true
+interval = "168h"
+auto = false
+source = "cdn"
