@@ -71,6 +71,6 @@ final_space = true
 
 [upgrade]
 notice = true
-interval = "168h"
+interval = "24h"
 auto = false
-source = "cdn"
+source = "github"
