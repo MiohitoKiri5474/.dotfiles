@@ -1,5 +1,3 @@
-HISTFILE=~/.zsh_history
-
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
     print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
@@ -13,28 +11,9 @@ source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-export_init() {
-    export PATH="/Users/mac/Yinge/cli/bin:$PATH"
-    autoload -U compinit; compinit
-
-    export PATH="$HOME/.ycli/release:$PATH"
-
-    eval $(thefuck --alias)
-
-    if command -v ngrok &>/dev/null; then
-        eval "$(ngrok completion)"
-    fi
-
-    export PATH=$PATH:$HOME/.local/bin
-
-    export N_PREFIX=$HOME/.n
-    export PATH=$N_PREFIX/bin:$PATH
-}
-
 nvimUpdate() {
     nvim --headless "+Lazy! sync" +qa
 }
-
 
 dailyUpdate() {
     brew update
@@ -63,7 +42,6 @@ if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
   eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/minimal-solarized-osaka.toml)"
 fi
 
-
 zinit light-mode for \
     OMZL::history.zsh \
     zsh-users/zsh-history-substring-search \
@@ -84,7 +62,6 @@ zinit light-mode for \
     OMZL::termsupport.zsh \
     OMZL::functions.zsh \
     OMZ::plugins/web-search/web-search.plugin.zsh
-
 
 zsh-defer export_init
 
