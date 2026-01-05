@@ -32,7 +32,7 @@ return {
         variables = {},
         -- Background styles. Can be "dark", "transparent" or "normal"
         sidebars = "dark", -- style for sidebars, see below
-        floats = "transparent", -- style for floating windows
+        floats = "dark", -- style for floating windows
       },
       sidebars = { "qf", "help" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
       day_brightness = 0.3, -- Adjusts the brightness of the colors of the **Day** style. Number between 0 and 1, from dull to vibrant colors
@@ -212,9 +212,25 @@ return {
       quickfile = { enabled = true },
       statuscolumn = { enabled = true },
       words = { enabled = true },
+      explorer = {
+        enabled = true,
+        replace_netrw = true,
+        trash = true,
+      },
+      picker = {
+        enabled = true,
+        hidden = true,
+        ignored = true,
+      },
       styles = {
         notification = {
           wo = { wrap = true }, -- Wrap notifications
+          -- Add custom style for picker list (used by explorer)
+          -- picker_list = {
+          --   wo = {
+          --     winhighlight = "NormalFloat: Normal,FloatBorder:Normal",
+          --   },
+          -- },
         },
       },
       dashboard = {
@@ -353,13 +369,6 @@ return {
           })
         end,
         desc = "Open package.json",
-      },
-      {
-        "<leader>df",
-        function()
-          require("snacks.picker").git_diff()
-        end,
-        desc = "Git Diff (HEAD)",
       },
     },
     init = function()
