@@ -12,7 +12,7 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 nvimUpdate() {
-    nvim --headless "+Lazy! sync" +qa
+    nvim --headless "+Lazy! sync" "+MasonUpdate" +qa
 }
 
 dailyUpdate() {
@@ -105,3 +105,4 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
 
+eval $(thefuck --alias)
