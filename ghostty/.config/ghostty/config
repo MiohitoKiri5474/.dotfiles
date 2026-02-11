@@ -1,12 +1,15 @@
 theme = Solarized Dark Patched
 copy-on-select = true
-font-family = SauceCodePro NF SemiBold
+font-family = Iosevka Custom
+# font-family = Iosevka Nerd Font Mono
+# font-family = SauceCodePro NF SemiBold
 font-size = 16
 macos-titlebar-style = hidden
 macos-titlebar-proxy-icon = hidden
 title = " "
 mouse-hide-while-typing = true
 link-url = true
+macos-option-as-alt = true
 
 macos-icon = custom-style
 macos-icon-frame = plastic
@@ -27,13 +30,16 @@ keybind = super+digit_7=text:\x01\x37
 keybind = super+digit_8=text:\x01\x38
 keybind = super+digit_9=text:\x01\x39
 
+# Save tmux current status with Cmd+s in tmux it is Ctrl+b+:
+keybind = super+s=text:\x01\x13
+
 # New tmux window on Cmd+t in tmux it is Ctrl+b+c
 keybind = super+t=text:\x01\x63
 
 # Close tmux pane on Cmd+w in tmux it is Ctrl+b+x (it is using a custom keybind in tmux to kill the pane)
 keybind = super+w=text:\x01\x78
 
-## Rename a tmux window on Cmd+r in tmux it is Ctrl+b+,
+# Rename a tmux window on Cmd+r in tmux it is Ctrl+b+,
 keybind = super+r=text:\x01\x2c
 
 # Go to the previous tmux window on Cmd+h in tmux it is Ctrl+b+p
