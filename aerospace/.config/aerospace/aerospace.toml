@@ -187,9 +187,9 @@ run = 'move-node-to-workspace A'
 if.app-id = 'company.thebrowser.Browser'
 run = 'move-node-to-workspace A'
 
-# ChatGPT
+# Claude
 [[on-window-detected]]
-if.app-id = 'com.openai.chat'
+if.app-id = 'com.anthropic.claudefordesktop'
 run = 'move-node-to-workspace C'
 
 # Spotify
