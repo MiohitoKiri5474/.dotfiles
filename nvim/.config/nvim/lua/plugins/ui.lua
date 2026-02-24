@@ -115,7 +115,6 @@ return {
     dependencies = {
       "craftzdog/solarized-osaka.nvim",
       "nvim-tree/nvim-web-devicons",
-      "AndreM222/copilot-lualine",
     },
 
     init = function()
@@ -167,7 +166,7 @@ return {
           lualine_a = { "mode" },
           lualine_b = { "branch" },
           lualine_c = { { "diff", "diagnostics" }, "filename", "aerial" },
-          lualine_x = { "copilot", lsp, "filetype" },
+          lualine_x = { lsp, "filetype" },
           lualine_y = { "location", "progress" },
           lualine_z = { "encoding", "filesize" },
         },
