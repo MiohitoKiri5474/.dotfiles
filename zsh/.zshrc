@@ -106,3 +106,4 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init - zsh)"
 
 eval $(thefuck --alias)
+export PATH="$HOME/.local/bin:$PATH"
