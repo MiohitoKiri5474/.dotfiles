@@ -1,6 +1,6 @@
 theme = Solarized Dark Patched
 copy-on-select = true
-font-family = Iosevka Custom
+font-family = Iosevka JavaScript
 # font-family = Iosevka Nerd Font Mono
 # font-family = SauceCodePro NF SemiBold
 font-size = 16
