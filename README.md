@@ -7,6 +7,7 @@ If you want to use any configuration of this repo, please replace files/folders 
 ### tmux & zsh
 
 Minimal configuration. Tmux uses the [solarized-osaka-tmux](https://github.com/MiohitoKiri5474/solarized-osaka-tmux) theme and includes popup windows:
+
 - `prefix+g` — opens lazygit in a popup
 - `prefix+y` — opens Claude Code in a popup (session-scoped, persists between popups)
 
@@ -21,6 +22,7 @@ Terminal emulator with a custom Iosevka font (Customize Iosevka) and Solarized D
 ### AeroSpace
 
 Tiling window manager for macOS. Workspaces:
+
 - `1–5` — general
 - `A` — Arc Browser / Safari
 - `C` — Claude desktop
@@ -56,7 +58,7 @@ Tiling window manager for macOS. Workspaces:
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-2. Install packages with brew.
+1. Install packages with brew.
 
 ```sh
 # Install essential package
@@ -87,13 +89,13 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 brew install nodejs
 ```
 
-3. Clone dotfiles into home folder at localhost.
+1. Clone dotfiles into home folder at localhost.
 
 ```sh
 git clone https://github.com/MiohitoKiri5474/.dotfiles.git
 ```
 
-4. Use `stow` to deploy all config files.
+1. Use `stow` to deploy all config files.
 
 ```sh
 cd .dotfiles
@@ -103,14 +105,14 @@ stow zsh nvim tmux clangd zathura hammerspoon aerospace karabiner ghostty lazygi
 
 ### Ubuntu
 
-> I only install necessary package (editor, shell, tmux etc.) on Ubuntu because I only use it for remote server.
+> I only install necessary package (editor, shell, tmux etc.) on Ubuntu because I only use it as remote server.
 
 1. Install packages with apt.
 
 ```sh
-# install neovim nightly instead of stable version for some extra features
+# Install neovim nightly instead of stable version for some extra features
 sudo add-apt-repository ppa:neovim-ppa/unstable
-sudo apt install neovim bat tmux eza wget btop stow unzip zip fzf luarocks
+sudo apt install neovim bat tmux eza wget btop stow unzip zip fzf zsh golang
 
 # Install require pacakge for neovim plugins (telescope etc.)
 sudo apt install fd-find ripgrep luarocks
@@ -127,18 +129,21 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 # Install pyenv
 curl -fsSL https://pyenv.run | bash
 
-#NodeJS install, including nvm, npm and nodejs
+# NodeJS install, including nvm, npm and nodejs
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 sudo apt install nodejs npm
+
+# Install tmux-plugin-manager
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
-2. Clone dotfiles into home folder at localhost.
+1. Clone dotfiles into home folder at localhost.
 
 ```sh
 git clone https://github.com/MiohitoKiri5474/.dotfiles.git
 ```
 
-3. Use stow to deploy all config files.
+1. Use stow to deploy all config files.
 
 ```sh
 cd .dotfiles
@@ -150,7 +155,7 @@ stow zsh nvim tmux clangd
 
 > This script has not been verified yet.
 
-> I only install necessary package (editor, shell, tmux etc.) on ArchLinux because I only use it for remote server.
+> I only install necessary package (editor, shell, tmux etc.) on ArchLinux because I only use it as remote server.
 
 1. Install packages with apt.
 
@@ -162,9 +167,9 @@ cd yay
 makepkg -si
 cd ~
 
-# install neovim nightly instead of stable version for some extra features
+# Install neovim nightly instead of stable version for some extra features
 yay -S neovim-nightly
-sudo pacman -S bat tmux eza wget btop stow unzip zip fzf
+sudo pacman -S bat tmux eza wget btop stow unzip zip fzf zsh golang
 
 # Install require pacakge for neovim plugins (telescope etc.)
 sudo pacman -S fd-find ripgrep luarocks
@@ -181,18 +186,21 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 # Install pyenv
 curl -fsSL https://pyenv.run | bash
 
-#NodeJS install, including nvm, npm and nodejs
+# NodeJS install, including nvm, npm and nodejs
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 sudo pacman -S nodejs npm
+
+# Install tmux-plugin-manager
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
-2. Clone dotfiles into home folder at localhost.
+1. Clone dotfiles into home folder at localhost.
 
 ```sh
 git clone https://github.com/MiohitoKiri5474/.dotfiles.git
 ```
 
-3. Use stow to deploy all config files.
+1. Use stow to deploy all config files.
 
 ```sh
 cd .dotfiles
