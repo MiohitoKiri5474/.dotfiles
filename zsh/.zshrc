@@ -63,6 +63,9 @@ zinit light-mode for \
     OMZL::functions.zsh \
     OMZ::plugins/web-search/web-search.plugin.zsh
 
+    zinit snippet OMZP::command-not-found
+
+
 zsh-defer export_init
 
 
@@ -106,4 +109,11 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init - zsh)"
 
 eval $(thefuck --alias)
-export PATH="$HOME/.local/bin:$PATH"
+
+source ~/.secrets
+export EDITOR=nvim
+
+# Open buffer line in editor
+autoload -Uz editor-command-line
+zle -N editor-command-line
+bindkey "^e" editor-command-line
