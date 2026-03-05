@@ -151,6 +151,13 @@ cd .dotfiles
 stow zsh nvim tmux clangd
 ```
 
+1. Set zsh as default login shell.
+
+```sh
+sudo sh -c "echo $(which zsh) >> /etc/shells"
+chsh -s $(which zsh)
+```
+
 ### ArchLinux
 
 > This script has not been verified yet.
