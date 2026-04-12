@@ -46,11 +46,4 @@ keybind = super+r=text:\x01\x2c
 keybind = super+h=text:\x01\x70
 
 # Go to te next tmux window on Cmd+l in tmux it is Ctrl+b+n
-keybind = super+l=text:\x01\x6e Rename a tmux window on Cmd+r in tmux it is Ctrl+b+,
-keybind = super+r=text:\x01\x2c
-
-# Go to the previous tmux window on Cmd+h in tmux it is Ctrl+b+p
-keybind = super+h=text:\x01\x70
-
-# Go to te next tmux window on Cmd+l in tmux it is Ctrl+b+n
 keybind = super+l=text:\x01\x6e
