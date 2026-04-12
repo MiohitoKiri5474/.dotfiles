@@ -75,7 +75,7 @@ return {
           filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
         },
         clangd = {
-          filetypes = { "c", "cpp" },
+          filetypes = { "cpp" },
           cmd = { "clangd" },
           capabilities = vim.lsp.protocol.make_client_capabilities(),
         },
@@ -238,8 +238,7 @@ return {
     optional = true,
     opts = {
       formatters_by_ft = {
-        c = { "clang_format" },
-        h = { "clang_format" },
+        -- h = { "clang_format" },
         lua = { "stylua" },
         go = { "gofumpt" },
         python = { "isort", "black" },
