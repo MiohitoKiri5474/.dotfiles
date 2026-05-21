@@ -176,10 +176,10 @@ cd ~
 
 # Install neovim nightly instead of stable version for some extra features
 yay -S neovim-nightly
-sudo pacman -S bat tmux eza wget btop stow unzip zip fzf zsh golang
+sudo pacman -S bat tmux eza wget btop stow unzip zip fzf zsh go
 
 # Install require pacakge for neovim plugins (telescope etc.)
-sudo pacman -S fd-find ripgrep luarocks
+sudo pacman -S fd ripgrep luarocks
 
 # Install require package for tmux theme
 sudo pacman -S bash bc coreutils gawk git jq playerctl
