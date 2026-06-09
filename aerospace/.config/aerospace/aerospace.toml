@@ -192,6 +192,11 @@ run = 'move-node-to-workspace A'
 if.app-id = 'com.anthropic.claudefordesktop'
 run = 'move-node-to-workspace C'
 
+# Gemini
+[[on-window-detected]]
+if.app-id = 'com.google.GeminiMacOS'
+run = 'move-node-to-workspace C'
+
 # Spotify
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
