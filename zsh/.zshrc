@@ -15,10 +15,14 @@ nvimUpdate() {
     nvim --headless "+Lazy! sync" "+MasonUpdate" +qa
 }
 
-dailyUpdate() {
+brewUpdate() {
     brew update
     brew upgrade
-    brew cleanup &
+    brew cleanup --prune=all &
+}
+
+dailyUpdate() {
+    brewUpdate
     nvimUpdate &
     zinit self-update
     zinit update --parallel 3
@@ -117,3 +121,20 @@ export EDITOR=nvim
 autoload -Uz editor-command-line
 zle -N editor-command-line
 bindkey "^e" editor-command-line
+
+# Replace diff with difft
+alias "diff"="difft"
+
+. "$HOME/.local/bin/env"
+export PATH="/opt/homebrew/opt/lua@5.1/bin:$PATH"
+export PATH="/opt/homebrew/opt/lua@5.4/bin:$PATH"
+
+# bun completions
+[ -s "/Users/miohitokiri5474/.bun/_bun" ] && source "/Users/miohitokiri5474/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Clean up stale pyenv lock on startup
+[[ -f ~/.pyenv/shims/.pyenv-shim ]] && rm ~/.pyenv/shims/.pyenv-shim
