@@ -196,7 +196,7 @@ return {
 
                 return executable_name
               end)(),
-              analysis = { diagnosticMode = "off", typeCheckingMode = "off" },
+              analysis = { diagnosticMode = "openFilesOnly", typeCheckingMode = "basic" },
             },
           }
           require("lspconfig").pyright.setup(opts)

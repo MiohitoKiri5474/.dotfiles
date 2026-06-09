@@ -12,6 +12,26 @@ vim.api.nvim_create_autocmd("InsertLeave", {
   command = "set nopaste",
 })
 
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if not client then return end
+    local ns = vim.lsp.diagnostic.get_namespace(client.id)
+    vim.diagnostic.config({ update_in_insert = false }, ns)
+
+    -- Remove LSP's TextChangedI autocmd so the server is not notified while
+    -- typing. TextChanged fires automatically after InsertLeave, which still
+    -- delivers didChange to the server at the right time.
+    vim.schedule(function()
+      for _, ac in ipairs(vim.api.nvim_get_autocmds({ event = "TextChangedI", buffer = args.buf })) do
+        if (ac.group_name or ""):find("lsp", 1, true) then
+          pcall(vim.api.nvim_del_autocmd, ac.id)
+        end
+      end
+    end)
+  end,
+})
+
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "json", "jsonc", "py" },
   callback = function()
