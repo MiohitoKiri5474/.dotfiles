@@ -47,6 +47,7 @@ if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
 fi
 
 zinit light-mode for \
+    zsh-users/zsh-autosuggestions \
     OMZL::history.zsh \
     zsh-users/zsh-history-substring-search \
     romkatv/zsh-defer \
@@ -54,10 +55,6 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-bin-gem-node \
     zdharma-continuum/zinit-annex-patch-dl \
     zdharma-continuum/zinit-annex-rust \
-    zsh-users/zsh-completions \
-    zsh-users/zsh-autosuggestions \
-    zdharma-continuum/fast-syntax-highlighting \
-    agkozak/zsh-z \
     OMZL::completion.zsh \
     OMZL::key-bindings.zsh \
     OMZL::git.zsh \
@@ -67,10 +64,22 @@ zinit light-mode for \
     OMZL::functions.zsh \
     OMZ::plugins/web-search/web-search.plugin.zsh
 
-    zinit snippet OMZP::command-not-found
+zinit wait lucid light-mode for \
+    zsh-users/zsh-completions \
+    zdharma-continuum/fast-syntax-highlighting \
+    agkozak/zsh-z
+
+zsh-defer zinit snippet OMZP::command-not-found
 
 
 zsh-defer export_init
+
+autoload -Uz compinit
+if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
 
 
 alias "vim"="nvim"
@@ -92,9 +101,17 @@ function set_poshcontext() {
     export POSH=$(date)
 }
 
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+nvm() {
+  unset -f nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+  nvm "$@"
+}
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 export PATH="/opt/homebrew/opt/gnu-getopt/bin:$PATH"
@@ -110,9 +127,9 @@ PERL_MM_OPT="INSTALL_BASE=/Users/miohitokiri5474/perl5"; export PERL_MM_OPT;
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
+zsh-defer eval "$(pyenv init - zsh)"
 
-eval $(thefuck --alias)
+zsh-defer eval "$(thefuck --alias)"
 
 source ~/.secrets
 export EDITOR=nvim
