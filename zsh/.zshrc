@@ -135,9 +135,9 @@ source ~/.secrets
 export EDITOR=nvim
 
 # Open buffer line in editor
-autoload -Uz editor-command-line
-zle -N editor-command-line
-bindkey "^e" editor-command-line
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey "^e" edit-command-line
 
 # Replace diff with difft
 alias "diff"="difft"
