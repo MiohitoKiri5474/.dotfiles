@@ -66,8 +66,8 @@ outer.right =      10
 
 [workspace-to-monitor-force-assignment]
     1 = 'main'
-    2 = 'Dell'
-    D = 'Dell'
+    2 = 'secondary'
+    D = 'secondary'
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
