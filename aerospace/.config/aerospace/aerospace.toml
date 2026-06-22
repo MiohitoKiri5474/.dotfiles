@@ -172,10 +172,11 @@ alt-shift-l = ['join-with right', 'mode main']
 # Ghostty
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
-run = [
-    'layout tiling',
-    'move-node-to-workspace T'
-]
+run = 'move-node-to-workspace T'
+
+[[on-window-detected]]
+if.app-id = 'app.supabit.supacode'
+run = 'move-node-to-workspace T'
 
 # SourceTree
 [[on-window-detected]]
