@@ -1,12 +1,7 @@
 theme = Solarized Dark Patched
 copy-on-select = true
-font-family = Iosevka JavaScript
-# font-family = Iosevka Nerd Font Mono
-# font-family = SauceCodePro NF SemiBold
+font-family = Iosevka Nerd Font Mono
 font-size = 16
-macos-titlebar-style = hidden
-macos-titlebar-proxy-icon = hidden
-title = " "
 mouse-hide-while-typing = true
 link-url = true
 macos-option-as-alt = true
@@ -19,31 +14,10 @@ macos-icon-screen-color = #003748
 background-opacity = 0.90
 background-blur = true
 
-# Go to the N window in tmux in tmux it is Ctrl+b+number
-keybind = super+digit_1=text:\x01\x31
-keybind = super+digit_2=text:\x01\x32
-keybind = super+digit_3=text:\x01\x33
-keybind = super+digit_4=text:\x01\x34
-keybind = super+digit_5=text:\x01\x35
-keybind = super+digit_6=text:\x01\x36
-keybind = super+digit_7=text:\x01\x37
-keybind = super+digit_8=text:\x01\x38
-keybind = super+digit_9=text:\x01\x39
+keybind = ctrl+h=goto_split:left
+keybind = ctrl+j=goto_split:bottom
+keybind = ctrl+k=goto_split:top
+keybind = ctrl+l=goto_split:right
 
-# Save tmux current status with Cmd+s in tmux it is Ctrl+b+:
-keybind = super+s=text:\x01\x13
-
-# New tmux window on Cmd+t in tmux it is Ctrl+b+c
-keybind = super+t=text:\x01\x63
-
-# Close tmux pane on Cmd+w in tmux it is Ctrl+b+x (it is using a custom keybind in tmux to kill the pane)
-keybind = super+w=text:\x01\x78
-
-# Rename a tmux window on Cmd+r in tmux it is Ctrl+b+,
-keybind = super+r=text:\x01\x2c
-
-# Go to the previous tmux window on Cmd+h in tmux it is Ctrl+b+p
-keybind = super+h=text:\x01\x70
-
-# Go to te next tmux window on Cmd+l in tmux it is Ctrl+b+n
-keybind = super+l=text:\x01\x6e
+keybind = ctrl+minus=new_split:down
+keybind = ctrl+backslash=new_split:right
