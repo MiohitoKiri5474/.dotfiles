@@ -18,3 +18,28 @@ keymap.set("n", "<s-tab>", ":tabprev<Return>", opt)
 keymap.set("n", "<leader>cp", "gg0vG$y<Return>", opt)
 
 keymap.set("v", "<leader>sc", ":Silicon<Return>", opt)
+
+-- in your neovim config
+local function navigate(dir)
+  local ghostty_dir = { h = "left", j = "bottom", k = "top", l = "right" }
+  -- try to move within neovim first
+  local cur_win = vim.api.nvim_get_current_win()
+  vim.cmd("wincmd " .. dir)
+  if vim.api.nvim_get_current_win() == cur_win then
+    -- didn't move, tell ghostty to navigate
+    io.write("\x1b]1337;GhosttyNavigate=" .. ghostty_dir[dir] .. "\x07")
+  end
+end
+
+vim.keymap.set("n", "<C-h>", function()
+  navigate("h")
+end)
+vim.keymap.set("n", "<C-j>", function()
+  navigate("j")
+end)
+vim.keymap.set("n", "<C-k>", function()
+  navigate("k")
+end)
+vim.keymap.set("n", "<C-l>", function()
+  navigate("l")
+end)
