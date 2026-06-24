@@ -17,7 +17,7 @@ nvimUpdate() {
 
 brewUpdate() {
     brew update
-    brew upgrade
+    brew upgrade -y
     brew cleanup --prune=all &
 }
 
