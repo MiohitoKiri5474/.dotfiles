@@ -1,6 +1,8 @@
 # Place a copy of this config to ~/.aerospace.toml
 # After that, you can edit ~/.aerospace.toml to your liking
 
+config-version = 2
+
 # You can use it to add commands that run after login to macOS user session.
 # 'start-at-login' needs to be 'true' for 'after-login-command' to work
 # Available commands: https://nikitabobko.github.io/AeroSpace/commands
@@ -13,6 +15,10 @@ after-startup-command = []
 
 # Start AeroSpace at login
 start-at-login = true
+
+# Workspaces to keep alive even when empty.
+# In config-version = 2, this must be defined explicitly (was inferred from keybindings in v1)
+persistent-workspaces = ['1', '2', '3', '4', '5', 'A', 'C', 'D', 'S', 'T']
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
