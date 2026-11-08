@@ -29,7 +29,8 @@ const ATTENTION = ["blocked", "done"];
 
 export default class Paddock extends View {
   init(_props, cx) {
-    this.recent = []; // {space, tab} shown, newest first; closed ones skipped on use
+    // {space, tab} shown, newest first; closed ones skipped on use. In shared so a restart keeps it.
+    this.recent = shared("paddock.recent") ?? [];
     this.notice = null;
     // Survives mod reloads, not app restarts: tells a float overlay id from a dead one.
     globalThis.paddockBoot ??= Date.now();
@@ -100,8 +101,7 @@ export default class Paddock extends View {
     // Newest tab still open, other than the one shown: closing a tab doesn't break it.
     const all = spaces();
     const live = this.recent.slice(1).find((p) => all.some((s) => s.id === p.space && s.tabs.some((t) => t.id === p.tab)));
-    if (!live) { setShared("paddock.debug", { recent: this.recent.map((p) => p.tab.slice(2, 8)), to: null }); return this.say("no last tab", cx); }
-    setShared("paddock.debug", { recent: this.recent.map((p) => p.tab.slice(2, 8)), to: live.tab.slice(2, 8) });
+    if (!live) return this.say("no last tab", cx);
     run("space.select", { id: live.space });
     run("tab.select", { id: live.tab });
   }
@@ -166,6 +166,7 @@ export default class Paddock extends View {
     if (f?.tab && (f.space !== top?.space || f.tab !== top?.tab)) {
       const rest = this.recent.filter((p) => p.tab !== f.tab);
       this.recent = [{ space: f.space, tab: f.tab }, ...rest].slice(0, RECENT_MAX);
+      setShared("paddock.recent", this.recent);
     }
     const t = theme();
     return h_flex().size_full().px(12).items_center().justify_end().bg(t.chrome).border_t(1).border_color(t.border)

@@ -89,5 +89,8 @@
     "ctrl-j": "pane.go:down",
     "ctrl-k": "pane.go:up",
     "ctrl-l": "pane.go:right"
+  },
+  "mod:paddock-prefix": {
+    "tab": "paddock-prefix.key_tab"
   }
 }

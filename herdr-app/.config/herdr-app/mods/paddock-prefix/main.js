@@ -4,7 +4,7 @@
 
 import { View, div } from "gpui-kit";
 import { v_flex, h_flex } from "gpui-base";
-import { run, props, closeOverlay, theme } from "herdr";
+import { run, props, closeOverlay, theme, nextCommand } from "herdr";
 
 const KEYS = [
   ["c", "new tab", ["tab.new"]],
@@ -12,6 +12,7 @@ const KEYS = [
   ["n", "next tab", ["tab.next"]],
   ["p", "previous tab", ["tab.prev"]],
   ["tab", "last space and tab", ["paddock.last_page"]],
+  [";", "last space and tab", ["paddock.last_page"]],
   ["1-9", "go to tab N", null],
   [",", "rename tab", ["tab.rename"]],
   ["$", "rename space", ["space.rename"]],
@@ -49,6 +50,18 @@ export default class PaddockPrefix extends View {
     this.handle = cx.focus_handle();
     this.handle.focus();
     cx.timer.after(REFOCUS_MS, () => this.handle.focus());
+    // Tab never reaches on_key_down (the window takes it to move focus), so keys.json's
+    // "mod:paddock-prefix" section binds it to "paddock-prefix.key_tab" instead.
+    cx.spawn(async (cx) => {
+      for (;;) {
+        const c = await nextCommand();
+        if (!c.startsWith("key_")) continue;
+        const a = BY_KEY[c.slice(4)];
+        closeOverlay(props().overlay);
+        if (a) run(a[0], a[1] ?? {});
+        cx.notify();
+      }
+    });
   }
 
   action(e) {
@@ -56,7 +69,7 @@ export default class PaddockPrefix extends View {
     if (ch && /^[1-9]$/.test(ch)) return ["tab.select", { index: Number(ch) }];
     if (ch && BY_KEY[ch]) return BY_KEY[ch];
     const k = e.keystroke;
-    if (k === "tab") return BY_KEY.tab;
+    if (k === "tab" || e.key === "tab" || ch === "\t") return BY_KEY.tab;
     if (ARROWS[k]) return BY_KEY[ARROWS[k]];
     return null;
   }
