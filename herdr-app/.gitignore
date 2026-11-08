@@ -1,0 +1,11 @@
+# Runtime state and app-generated files; only config is tracked
+.config/herdr-app/telemetry/
+.config/herdr-app/data/
+.config/herdr-app/layouts/.state/
+.config/herdr-app/update-notes-media/
+.config/herdr-app/update-notes.json
+.config/herdr-app/window.json
+.config/herdr-app/view.json
+.config/herdr-app/shared.json
+gpui-kit.d.ts
+jsconfig.json
