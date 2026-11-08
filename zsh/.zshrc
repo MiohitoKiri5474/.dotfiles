@@ -41,9 +41,19 @@ bits-install() {
     cp -r ~/bits ~/.local/share/nvim/mason/packages/clangd/clangd_*/lib/clang/*/include/
 }
 
-# oh my posh
+# oh my posh: cache the init script per version, rebuilt when the config changes
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
-  eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/minimal-solarized-osaka.toml)"
+  () {
+    local config=~/.config/ohmyposh/minimal-solarized-osaka.toml
+    local cache=~/.cache/oh-my-posh/zsh-init-${commands[oh-my-posh]:A:h:h:t}.zsh
+    if [[ ! -s $cache || $config -nt $cache ]]; then
+      local init=$(oh-my-posh init zsh --config $config --print)
+      # Strip the baked-in session ID; each shell sets its own below
+      print -r -- ${init#export POSH_SESSION_ID=*;} >| $cache
+    fi
+    export POSH_SESSION_ID=$(uuidgen)
+    source $cache
+  }
 fi
 
 zinit light-mode for \
@@ -71,15 +81,19 @@ zinit wait lucid light-mode for \
 
 zsh-defer zinit snippet OMZP::command-not-found
 
+# Docker CLI completions
+fpath=(~/.docker/completions $fpath)
 
-zsh-defer export_init
-
+# Rebuild the completion dump at most once a day; otherwise load it as-is
 autoload -Uz compinit
-if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
-  compinit
-else
-  compinit -C
-fi
+() {
+  setopt local_options extended_glob
+  if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
+    compinit
+  else
+    compinit -C
+  fi
+}
 
 
 alias "vim"="nvim"
@@ -117,19 +131,12 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 export PATH="/opt/homebrew/opt/gnu-getopt/bin:$PATH"
 export PATH="/Library/TeX/texbin:$PATH"
 
-PATH="/Users/miohitokiri5474/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/Users/miohitokiri5474/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/Users/miohitokiri5474/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/Users/miohitokiri5474/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/Users/miohitokiri5474/perl5"; export PERL_MM_OPT;
-
-
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-zsh-defer eval "$(pyenv init - zsh)"
+zsh-defer -c 'eval "$(pyenv init - zsh)"'
 
-zsh-defer eval "$(thefuck --alias)"
+zsh-defer -c 'eval "$(thefuck --alias)"'
 
 source ~/.secrets
 export EDITOR=nvim
@@ -142,12 +149,11 @@ bindkey "^e" edit-command-line
 # Replace diff with difft
 alias "diff"="difft"
 
-. "$HOME/.local/bin/env"
 export PATH="/opt/homebrew/opt/lua@5.1/bin:$PATH"
 export PATH="/opt/homebrew/opt/lua@5.4/bin:$PATH"
 
 # bun completions
-[ -s "/Users/miohitokiri5474/.bun/_bun" ] && source "/Users/miohitokiri5474/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -155,3 +161,6 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Clean up stale pyenv lock on startup
 [[ -f ~/.pyenv/shims/.pyenv-shim ]] && rm ~/.pyenv/shims/.pyenv-shim
+
+export GITHUB_USERNAME="ardge-milolin"
+export MIRROR_CONTAINER_REGISTRY="https://proxy.ardge.me"
