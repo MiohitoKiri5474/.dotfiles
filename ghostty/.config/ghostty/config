@@ -1,7 +1,7 @@
-theme = Solarized Dark Patched
+theme = Solarized Osaka Night
 copy-on-select = true
-font-family = Iosevka Nerd Font Mono
-font-size = 16
+font-family = Iosevka Custom
+font-size = 18
 mouse-hide-while-typing = true
 link-url = true
 macos-option-as-alt = true
@@ -14,10 +14,5 @@ macos-icon-screen-color = #003748
 background-opacity = 0.90
 background-blur = true
 
-keybind = ctrl+h=goto_split:left
-keybind = ctrl+j=goto_split:bottom
-keybind = ctrl+k=goto_split:top
-keybind = ctrl+l=goto_split:right
-
-keybind = ctrl+minus=new_split:down
-keybind = ctrl+backslash=new_split:right
+macos-titlebar-style = hidden
+shell-integration-features = no-title
