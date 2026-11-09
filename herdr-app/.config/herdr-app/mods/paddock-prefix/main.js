@@ -25,12 +25,13 @@ const KEYS = [
   ["k", "focus up", ["pane.go", { direction: "up" }]],
   ["l", "focus right", ["pane.go", { direction: "right" }]],
   ["z", "zoom split", ["pane.zoom"]],
-  ["x", "close split", ["pane.close"]],
+  ["x", "close split (asks if an agent runs)", ["paddock.close_pane"]],
   ["f", "fork Claude into a tab", ["paddock.fork"]],
   ["W", "new worktree", ["paddock.new_worktree"]],
   ["O", "open worktree", ["paddock.open_worktree"]],
   ["s", "focus agents list", ["paddock.focus_agents"]],
   ["w", "focus spaces list", ["paddock.focus_spaces"]],
+  ["S", "focus spaces list", ["paddock.focus_spaces"]],
   ["b", "show or hide sidebar", ["layout.toggle", { id: "sidebar" }]],
   ["{", "sidebar narrower", ["paddock.sidebar_narrower"]],
   ["}", "sidebar wider", ["paddock.sidebar_wider"]],
@@ -38,8 +39,9 @@ const KEYS = [
   ["g", "find a space, tab or agent", ["mod.open", { name: "picker" }]],
   ["/", "search the history", ["terminal.search"]],
   ["G", "lazygit float", ["paddock.float_G"]],
-  ["d", "detach (close window)", ["window.close"]],
+  ["d", "hide the window", ["app.hide"]],
   ["?", "all keys", ["app.help"]],
+  ["⌃A", "send ⌃A to the program", ["paddock.send_ctrl_a"]],
 ];
 const ARROWS = { left: "h", down: "j", up: "k", right: "l" };
 const BY_KEY = Object.fromEntries(KEYS.filter((k) => k[2]).map((k) => [k[0], k[2]]));
@@ -69,6 +71,7 @@ export default class PaddockPrefix extends View {
     if (ch && /^[1-9]$/.test(ch)) return ["tab.select", { index: Number(ch) }];
     if (ch && BY_KEY[ch]) return BY_KEY[ch];
     const k = e.keystroke;
+    if (k === "ctrl-a") return BY_KEY["⌃A"];
     if (k === "tab" || e.key === "tab" || ch === "\t") return BY_KEY.tab;
     if (ARROWS[k]) return BY_KEY[ARROWS[k]];
     return null;

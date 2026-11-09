@@ -1,8 +1,11 @@
 {
   "zoom": 1.0,
   "sounds": {
-    "enabled": true
+    "enabled": false
   },
   "font_ligatures": false,
-  "minimum_contrast": 1.0
+  "minimum_contrast": 1.0,
+  "font_size": 16,
+  "telemetry": false,
+  "theme": "solarized"
 }

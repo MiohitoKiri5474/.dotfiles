@@ -20,19 +20,19 @@ the status bar reads `⌃A  paddock`, and paddock's short notices appear there.
   `⌃A  paddock` in `dim`. It shows a notice in `foreground` for 4 s, then the
   text goes back.
 - **The prefix sheet** is a popup at the top of the window, 40px down,
-  600×470. It has a `popover` background, 16px padding, and 12.5px text. Its
+  600×500. It has a `popover` background, 16px padding, and 12.5px text. Its
   header reads `⌃A  then` (semibold) with `Esc cancels` on the right (11px,
   `dim`). Below the header are two columns of 22px rows. Each row shows the key
   in `accent`, semibold, 34px wide, and then what it does in `muted`. There are
-  32 entries, in this order: `c` new tab, `C` new space, `n`/`p` next/previous
-  tab, `tab` last space and tab, `1-9` go to tab N, `,` rename tab, `$` rename
+  35 entries, in this order: `c` new tab, `C` new space, `n`/`p` next/previous
+  tab, `tab` and `;` last space and tab, `1-9` go to tab N, `,` rename tab, `$` rename
   space, `<`/`>` move tab left/right, `|`/`-` split side by side / top and
-  bottom, `h j k l` focus left/down/up/right, `z` zoom split, `x` close split,
-  `f` fork Claude into a tab, `W`/`O` new/open worktree, `s`/`w` focus
+  bottom, `h j k l` focus left/down/up/right, `z` zoom split, `x` close split (asks if an agent runs),
+  `f` fork Claude into a tab, `W`/`O` new/open worktree, `s`/`w` (and `S`) focus
   agents/spaces list, `b` show or hide sidebar, `{`/`}` sidebar
   narrower/wider, `a` next session needing you, `g` find a space, tab or
-  agent, `/` search the history, `G` lazygit float, `d` detach (close window),
-  `?` all keys.
+  agent, `/` search the history, `G` lazygit float, `d` hide the window,
+  `?` all keys, `⌃A` send ⌃A to the program.
 - **The lazygit float** is a modal dialog of 80%×80% holding one live
   terminal.
 - **The sidebar lists** look like the shipped Spaces and Agents lists, with
@@ -56,7 +56,7 @@ the status bar reads `⌃A  paddock`, and paddock's short notices appear there.
 - **Direct keys work without the prefix:**
   - in terminals: `⌃⌥C` new tab, `⌃\` / `⌃-` split right/down, `⌃H/J/K/L`
     focus left/down/up/right;
-  - anywhere: `⌘⇧,` / `⌘⇧.` move tab, `⌘⌥,` / `⌘⌥.` sidebar −/+20px (44–480),
+  - anywhere: `⌘⇧,` / `⌘⇧.` move tab, `⌘⌥,` / `⌘⌥.` sidebar −/+40px (44–480),
     `⌘⇧A` next session needing you, `⌘;` last tab, `⌘⇧F` fork, `⌘⇧N` / `⌘⇧O`
     worktrees, `⌘⌥S` / `⌘⌥W` focus agents/spaces, `⌘⇧G` lazygit.
 - **Agent status** is drawn by the shipped agents/spaces code and is left
@@ -72,11 +72,19 @@ the status bar reads `⌃A  paddock`, and paddock's short notices appear there.
   `fork: focus a Claude Code pane first`.
 - **New/Open worktree** opens the shipped `worktree` dialog with
   `{space, folder, action}`. `new` is 460×280, `open` is 560×480.
-- **Focus spaces/agents** shows the sidebar. After 120 ms it sends the clone
-  `focus`.
-  - `j`/`↓` and `k`/`↑` move the cursor.
-  - Enter selects the space, or focuses the agent's pane.
-  - `Esc`/`q` returns to the pane that had the keyboard.
+- **Focus spaces/agents** shows the sidebar (and, for spaces, the spaces
+  block). After 120 ms it sends the clone `focus`; the cursor starts on the
+  current row.
+  - `j`/`↓` and `k`/`↑` move the cursor. Past the last space, `j` moves into
+    the agents list; above the first agent, `k` moves back into spaces.
+  - Enter selects the space and focuses its pane, or focuses the agent's pane.
+  - `x` closes the space, or the agent's pane after a confirm dialog.
+  - `W` / `o` open the new/open worktree dialog for that row.
+  - `Esc` returns to the pane that had the keyboard. The cursor shows only
+    while the list holds the keyboard.
+- **`⌃A x`** closes the focused pane at once, or asks first ("Close pane?")
+  when its agent is `working` or `blocked`.
+- **`⌃A ⌃A`** sends one ⌃A to the focused terminal (`hc keys <t> ctrl+a`).
 - **The lazygit float**:
   - `G` toggles one float per space. If none is running, it starts
     `hc run --bg --json --no-parent --rm --cwd <focused pane's folder> [--on <machine>] -- lazygit`
@@ -120,16 +128,23 @@ the status bar reads `⌃A  paddock`, and paddock's short notices appear there.
   It is opened by `mod.open:paddock-prefix`. A `KEYS` table of
   `[key, label, [command, args]]` draws the sheet and dispatches keys. Keys
   are matched on `key_char` first (so `<`, `|` and `{` work on any layout),
-  then on `keystroke` for `tab` and the arrows.
+  then on `keystroke` for `ctrl-a` and the arrows. `Tab` never reaches
+  `on_key_down` (the window takes it to move focus), so `keys.json` binds it
+  in `"mod:paddock-prefix": {"tab": "paddock-prefix.key_tab"}` and the popup's
+  `nextCommand()` loop runs it.
 - **`mods/paddock-spaces`, `mods/paddock-agents`**: `mod.clone` of the shipped
-  `spaces` and `agents`, with `"focusable": true`. Each adds:
-  - a `cx.focus_handle()`;
-  - a `nextCommand()` loop waiting for `"focus"`;
-  - `this.order`, the rows as drawn, in display order;
-  - `this.cursor` and `this.back`;
-  - an `on_key_down` on the root (`sp-root`, `ag-root`).
-
-  The spaces clone also adds `refreshPrs` and a `pr` argument to `gitTail`.
+  `spaces` and `agents` (0.1.14), with `"focusable": true`. Both share an
+  identical `spotlight.js`: a `Spotlight` class holding the focus handle, the
+  rows in screen order, the cursor and the pane to return to. Its
+  `nextCommand()` loop takes `"focus"`, `"spotlight"`, `"spotlight-first"` and
+  `"spotlight-last"` (the last two hand the keyboard between the lists). The
+  root gets `.track_focus(spot.handle).on_key_down(...)` with `open`, `close`
+  and `worktree` actions. The agents clone defaults its sort to "Grouped by
+  space". The spaces clone adds `refreshPrs` and a `pr` argument to `gitTail`.
+- **Hub commands** also include `close_pane` (confirm via the shipped
+  `confirm` dialog with `{title, detail, command}`) and `send_ctrl_a`.
+- **Look**: `themes/solarized.json` (Solarized dark) set as `settings.json`
+  `theme`, with `font_size: 16`.
 - **`keys.json`**: the entries listed under How it behaves. The `terminal`
   section holds `ctrl-a`, `ctrl-alt-c`, `ctrl-\`, `ctrl--` and `ctrl-h/j/k/l`.
   The `global` section holds the `cmd-…` ones as `paddock.<command>`.
@@ -150,10 +165,9 @@ the status bar reads `⌃A  paddock`, and paddock's short notices appear there.
 - `hc` reports Claude as app `claude-code`, not program key `claude`. Accept
   either one.
 - Binding `ctrl-a/h/j/k/l` takes start-of-line, Backspace, newline, kill-line
-  and clear away from programs. Nothing can send a literal `⌃A`.
+  and clear away from programs. `⌃A ⌃A` sends a literal `⌃A`.
 - `--continue` forks the newest Claude session in the folder. That is the
   wrong session if two Claude sessions share a folder.
-- The list cursor stays if you leave the list with a click instead of `Esc`.
 - The clones and the layout don't follow Herdr's updates to `spaces`, `agents`
   or `main`.
 
@@ -163,7 +177,7 @@ the status bar reads `⌃A  paddock`, and paddock's short notices appear there.
   `mods/paddock-spaces` and `mods/paddock-agents`, and `herdr-app status`
   shows `"errors": []` with the `paddock` layout shown.
 - The status bar ends in `⌃A  paddock`.
-- `herdr-app do paddock.sidebar_wider` widens the sidebar by 20px, and
+- `herdr-app do paddock.sidebar_wider` widens the sidebar by 40px, and
   `sidebar_narrower` reverses it.
 - With no blocked or done agents, `paddock.next_attention` shows
   `no session needs you`.

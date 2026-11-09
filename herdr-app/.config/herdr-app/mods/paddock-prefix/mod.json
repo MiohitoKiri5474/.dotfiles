@@ -1,1 +1,1 @@
-{ "place": "none", "title": "paddock prefix", "overlay": { "kind": "popup", "at": "top", "offset": 40, "width": 600, "height": 470 } }
+{ "place": "none", "title": "paddock prefix", "overlay": { "kind": "popup", "at": "top", "offset": 40, "width": 600, "height": 500 } }

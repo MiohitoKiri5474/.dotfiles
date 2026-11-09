@@ -3,7 +3,8 @@
 
 import { View, div, image, svg } from "gpui-kit";
 import { v_flex, h_flex } from "gpui-base";
-import { agents, terminals, panes, focused, spaces, run, theme, shared, setShared, setAgentOrder, openOverlay, closeOverlay, props, window, layout, nextCommand } from "herdr";
+import { agents, terminals, panes, focused, spaces, run, theme, shared, setShared, setAgentOrder, openOverlay, closeOverlay, props, window, layout } from "herdr";
+import { Spotlight } from "./spotlight.js";
 
 function find(node, id) {
   if (node?.id === id) return node;
@@ -52,9 +53,11 @@ const kidStatus = (k, listed) => {
   const s = listed.get(k.address) ?? k.status;
   return s === "error" ? "blocked" : s === "done" ? "idle" : s;
 };
+// Space order first (the default, as paddock lists agents): agents() comes in
+// space, tab, pane order, and a state change never moves a row.
 const SORTS = [
-  { id: "priority", label: "Priority", icon: "clock" },
   { id: "grouped", label: "Grouped by space", icon: "layers" },
+  { id: "priority", label: "Priority", icon: "clock" },
 ];
 const sortOf = () => SORTS.find((s) => s.id === shared("agents.sort")) ?? SORTS[0];
 const SECTION = { 4: "Needs you", 3: "Done", 2: "Working", 1: "Idle" };
@@ -77,6 +80,7 @@ function icon(p, size, color) {
 export default class Agents extends View {
   init(_props, cx) {
     if (props()?.sortMenu) return;
+    this.spot = new Spotlight(cx, { above: "paddock-spaces.spotlight-last" });
     this.folded = new Set();
     // Each agent's last state and when it changed (ms), kept across restarts.
     this.changed = JSON.parse(localStorage.getItem("changed") ?? "{}");
@@ -84,32 +88,6 @@ export default class Agents extends View {
     if (!this.pendingPins.length) localStorage.removeItem("pins");
     this.migratingPins = new Set();
     cx.timer.every(30000, (cx) => cx.notify());
-    // paddock: keyboard focus (prefix s, or pane.go onto it). j/k move, Enter goes, Esc leaves.
-    this.kb = cx.focus_handle();
-    this.cursor = null;
-    this.order = [];
-    cx.spawn(async (cx) => {
-      for (;;) {
-        if ((await nextCommand()) !== "focus") continue;
-        this.back = focused()?.pane ?? this.back;
-        this.cursor = agents().find((a) => a.focused)?.address ?? this.order[0] ?? null;
-        this.kb.focus();
-        cx.notify();
-      }
-    });
-  }
-
-  navKey(e, cx) {
-    const at = this.order.indexOf(this.cursor);
-    const k = e.keystroke;
-    const leave = () => { this.cursor = null; if (this.back) run("pane.focus", { pane: this.back }); };
-    if (k === "j" || k === "down") this.cursor = this.order[Math.min(this.order.length - 1, at + 1)] ?? this.cursor;
-    else if (k === "k" || k === "up") this.cursor = this.order[Math.max(0, at - 1)] ?? this.cursor;
-    else if (k === "enter") { const a = agents().find((x) => x.address === this.cursor); this.cursor = null; if (a) run("pane.focus", { pane: a.pane }); else leave(); }
-    else if (k === "escape" || k === "q") leave();
-    else return;
-    cx.stop_propagation();
-    cx.notify();
   }
 
   // Stamps agents whose state changed. Done and idle count as one: looking at a
@@ -226,7 +204,7 @@ export default class Agents extends View {
       .text_size(12.5)
       .when(on, (el) => el.bg(t.raised))
       .hover((s) => s.bg(t.hover))
-      .on_click(() => this.peek(k.address))
+      .on_click(() => (this.listed.has(k.address) ? run("pane.focus", { terminal: k.address }) : this.peek(k.address)))
       .children(s.lines.map(l => div().self_start().mt(-4).w(9).h(17).mr(4).flex_none()
         .when(Boolean(l), el => el.border_l(1.5).border_color(t.input))
         .when(l === "└" || l === "├", el => el.border_b(1.5).rounded_bl(6))))
@@ -259,6 +237,12 @@ export default class Agents extends View {
     const now = Date.now();
     this.track(list, now);
     this.hold(list);
+    // A kept sub-agent (one with a pane) is in agents() too: where a tree shows
+    // it, it gets no row of its own, unless it's pinned.
+    const nested = new Set(collapsed ? [] : list.flatMap((a) => this.tree(all, a.address).map((s) => s.t.address)));
+    list = list.filter((a) => a.pinned || !nested.has(a.address));
+    const tabCounts = new Map();
+    for (const a of list) tabCounts.set(a.tab, (tabCounts.get(a.tab) ?? 0) + 1);
     const byPriority = sort.id === "priority";
     const urgency = new Map(list.map((a) => [a.address, Math.max(this.rank(a), ...this.tree(all, a.address).map((s) => RANK[kidStatus(s.t, this.listed)] ?? 0))]));
     const rankOf = (a) => urgency.get(a.address);
@@ -267,7 +251,6 @@ export default class Agents extends View {
     const rest = list.filter((a) => !a.pinned);
     list = [...pinned, ...rest];
     setAgentOrder(list.map((a) => a.address));
-    this.order = list.map((a) => a.address);
 
     const withKids = (a, i) => {
       const subs = collapsed ? [] : this.tree(all, a.address);
@@ -307,8 +290,12 @@ export default class Agents extends View {
     // otherwise read the same.
     // Read the pane snapshot once: every host read copies the whole list into JS.
     const leads = leadPanes(panes());
-    const tabLabels = new Map(spaces().flatMap(s => s.tabs).map(tab => [tab.id, title(tab, leads.get(tab.id))]));
-    const labels = new Map(list.map(a => [a.address, tabLabels.get(a.tab) ?? (a.title || a.program?.name || "")]));
+    const tabs = new Map(spaces().flatMap(s => s.tabs).map(tab => [tab.id, tab]));
+    const labels = new Map(list.map(a => {
+      const tab = tabs.get(a.tab);
+      const many = tabCounts.get(a.tab) > 1;
+      return [a.address, tab ? title(many ? { ...tab, named: false } : tab, many ? a : leads.get(a.tab)) : (a.title || a.program?.name || "")];
+    }));
     const label = (a) => labels.get(a.address);
     const detail = new Map(list.map(a => [a.address, /^\d+$/.test(label(a)) ? null : label(a)]));
     const seen = {};
@@ -331,6 +318,7 @@ export default class Agents extends View {
           .items_center()
           .gap(4)
           .hover((s) => s.bg(t.hover))
+          .when(this.spot.on(a.address), (el) => el.border_1().border_color(t.accent))
           .on_click(() => run("pane.focus", { pane: a.pane }))
           .child(div().flex_1().min_w(0).whitespace_nowrap().text_right().text_color(t.muted).child(String(i + 1)))
           .child(h_flex().w(14).flex_none().items_center().justify_center().child(this.status(t, a, true)));
@@ -368,7 +356,7 @@ export default class Agents extends View {
         .items_center()
         .gap(9)
         .when(a.focused, (el) => el.bg(t.selected))
-        .when(this.cursor === a.address, (el) => el.border_1().border_color(t.accent))
+        .when(this.spot.on(a.address), (el) => el.border_1().border_color(t.accent))
         .cursor_pointer()
         .hover((s) => s.bg(t.hover))
         .on_hover((on, cx) => {
@@ -430,14 +418,33 @@ export default class Agents extends View {
           .when(!byPriority && top && top !== "idle", (el) => el.child(this.status(t, { status: top }, true)))
           .child(svg("mods/workspace-chrome/chevron-right.svg").size(11).flex_none().text_color(t.dim)));
     };
+    const visible = collapsed ? list : groups.flatMap((g) => (this.folded.has(g.id) ? [] : g.members));
+    this.spot.rows(visible.map((a) => a.address), list.find((a) => a.focused)?.address);
     const rows = collapsed
       ? list.flatMap(withKids)
       : groups.flatMap((g) => [header(g), ...(this.folded.has(g.id) ? [] : g.members.flatMap(withKids))]);
 
+    const byAddress = new Map(list.map((a) => [a.address, a]));
     return v_flex()
-      .id("ag-root")
-      .track_focus(this.kb)
-      .on_key_down((e, cx) => this.navKey(e, cx))
+      .id("paddock-agents")
+      .track_focus(this.spot.handle)
+      .on_key_down((e, cx) =>
+        this.spot.key(e, cx, {
+          open: (id) => run("pane.focus", { pane: byAddress.get(id)?.pane }),
+          close: (id) =>
+            openOverlay({
+              mod: "confirm",
+              kind: "dialog",
+              width: 380,
+              height: 160,
+              props: { title: "Close this agent's pane?", detail: "Its terminal ends.", command: { name: "pane.close", args: { pane: byAddress.get(id)?.pane } } },
+            }),
+          worktree: (id, action) => {
+            const a = byAddress.get(id);
+            openOverlay({ mod: "worktree", kind: "dialog", width: action === "new" ? 460 : 560, height: action === "new" ? 280 : 480, props: { space: a?.space, folder: panes().find((p) => p.pane === a?.pane)?.cwd, action } });
+          },
+        }),
+      )
       .size_full()
       .min_h(0)
       .bg(t.chrome)

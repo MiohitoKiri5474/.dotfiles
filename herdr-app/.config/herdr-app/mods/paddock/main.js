@@ -10,7 +10,7 @@ import { spaces, agents, panes, focused, terminals, layout, run, hc, theme, open
 
 // Floats: prefix + key shows or hides this program over the window, one per space.
 const FLOATS = { G: ["lazygit"] };
-const SIDEBAR_STEP = 20; // px per press; paddock moved 2 columns
+const SIDEBAR_STEP = 40; // px per press
 const SIDEBAR_MIN = 44;
 const SIDEBAR_MAX = 480;
 const NOTICE_MS = 4000;
@@ -62,7 +62,9 @@ export default class Paddock extends View {
       case "new_worktree": return this.worktree("new");
       case "open_worktree": return this.worktree("open");
       case "focus_agents": return this.focusSidebar("paddock-agents", cx);
-      case "focus_spaces": return this.focusSidebar("paddock-spaces", cx);
+      case "focus_spaces": run("layout.show", { id: "spaces" }); return this.focusSidebar("paddock-spaces", cx);
+      case "close_pane": return this.closePane();
+      case "send_ctrl_a": return this.sendCtrlA(cx);
       default: return this.say(`paddock: unknown command ${c}`, cx);
     }
   }
@@ -112,6 +114,23 @@ export default class Paddock extends View {
     const pane = panes().find((p) => p.focused);
     if (!pane?.cwd || !(pane.program?.key === "claude" || pane.app === "claude-code")) return this.say("fork: focus a Claude Code pane first", cx);
     run("tab.new", { folder: pane.cwd, argv: ["claude", "--continue", "--fork-session"] });
+  }
+
+  // Asks first while an agent in the pane is working or waiting on you.
+  closePane() {
+    const pane = panes().find((p) => p.pane === focused()?.pane);
+    if (!pane) return;
+    if (pane.status !== "working" && pane.status !== "blocked") return run("pane.close", { pane: pane.pane });
+    openOverlay({ mod: "confirm", kind: "dialog", width: 380, height: 160,
+      props: { title: "Close pane?", detail: "An agent is running in it.", command: { name: "pane.close", args: { pane: pane.pane } } } });
+  }
+
+  // ctrl-a is the prefix, so the program gets one only through here.
+  async sendCtrlA(cx) {
+    const terminal = focused()?.terminal;
+    if (!terminal) return this.say("no terminal focused", cx);
+    const r = await hc(["keys", terminal, "ctrl+a"]);
+    if (r.code !== 0) this.say(`send ⌃A: ${(r.stderr || r.stdout).trim()}`, cx);
   }
 
   worktree(action) {
