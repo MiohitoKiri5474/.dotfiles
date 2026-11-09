@@ -56,21 +56,17 @@
     "ctrl-6": "space.select:6",
     "ctrl-7": "space.select:7",
     "ctrl-8": "space.select:8",
-    "ctrl-9": "space.select:9",
-    "cmd-shift-,": "paddock.move_tab_left",
-    "cmd-shift-.": "paddock.move_tab_right",
-    "cmd-alt-,": "paddock.sidebar_narrower",
-    "cmd-alt-.": "paddock.sidebar_wider",
-    "cmd-shift-a": "paddock.next_attention",
-    "cmd-;": "paddock.last_page",
-    "cmd-shift-f": "paddock.fork",
-    "cmd-shift-n": "paddock.new_worktree",
-    "cmd-shift-o": "paddock.open_worktree",
-    "cmd-alt-s": "paddock.focus_agents",
-    "cmd-alt-w": "paddock.focus_spaces",
-    "cmd-shift-g": "paddock.float_G"
+    "ctrl-9": "space.select:9"
   },
   "terminal": {
+    "ctrl-a": "mod.open:leader",
+    "ctrl-\\": "pane.split:right",
+    "ctrl--": "pane.split:down",
+    "ctrl-alt-c": "tab.new",
+    "ctrl-h": "pane.go:left",
+    "ctrl-j": "pane.go:down",
+    "ctrl-k": "pane.go:up",
+    "ctrl-l": "pane.go:right",
     "cmd-f": "terminal.search",
     "cmd-c": "terminal.copy",
     "cmd-v": "terminal.paste",
@@ -80,17 +76,9 @@
     "alt-backspace": "send:\u0017",
     "cmd-left": "send:\u0001",
     "cmd-right": "send:\u0005",
-    "cmd-backspace": "send:\u0015",
-    "ctrl-a": "mod.open:paddock-prefix",
-    "ctrl-alt-c": "tab.new",
-    "ctrl-\\": "pane.split:right",
-    "ctrl--": "pane.split:down",
-    "ctrl-h": "pane.go:left",
-    "ctrl-j": "pane.go:down",
-    "ctrl-k": "pane.go:up",
-    "ctrl-l": "pane.go:right"
+    "cmd-backspace": "send:\u0015"
   },
-  "mod:paddock-prefix": {
-    "tab": "paddock-prefix.key_tab"
+  "mod:leader": {
+    "tab": "leader.last"
   }
 }

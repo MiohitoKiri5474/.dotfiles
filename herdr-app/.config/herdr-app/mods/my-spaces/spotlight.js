@@ -3,7 +3,7 @@
 // other list sends "spotlight-first" / "spotlight-last" when j/k run past
 // its end. j/k or arrows move, Enter opens, x closes, W/o open a worktree
 // dialog, Esc gives the keyboard back to the pane it came from.
-// Kept identical in mods/paddock-spaces and mods/paddock-agents.
+// Kept identical in mods/my-spaces and mods/my-agents.
 
 import { run, focused, nextCommand } from "herdr";
 
@@ -24,8 +24,7 @@ export class Spotlight {
     cx.spawn(async (cx) => {
       for (;;) {
         const c = await nextCommand();
-        // "focus": the paddock hub (prefix s / w) or pane.go onto this list.
-        if (c !== "focus" && !c.startsWith("spotlight")) continue;
+        if (!c.startsWith("spotlight")) continue;
         this.active = true;
         this.back = focused()?.pane ?? this.back;
         this.want = c === "spotlight-first" ? "first" : c === "spotlight-last" ? "last" : "current";

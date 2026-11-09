@@ -80,7 +80,7 @@ function icon(p, size, color) {
 export default class Agents extends View {
   init(_props, cx) {
     if (props()?.sortMenu) return;
-    this.spot = new Spotlight(cx, { above: "paddock-spaces.spotlight-last" });
+    this.spot = new Spotlight(cx, { above: "my-spaces.spotlight-last" });
     this.folded = new Set();
     // Each agent's last state and when it changed (ms), kept across restarts.
     this.changed = JSON.parse(localStorage.getItem("changed") ?? "{}");
@@ -426,7 +426,7 @@ export default class Agents extends View {
 
     const byAddress = new Map(list.map((a) => [a.address, a]));
     return v_flex()
-      .id("paddock-agents")
+      .id("my-agents")
       .track_focus(this.spot.handle)
       .on_key_down((e, cx) =>
         this.spot.key(e, cx, {
@@ -468,7 +468,7 @@ export default class Agents extends View {
                 .text_size(11)
                 .text_color(t.dim)
                 .hover((s) => s.text_color(t.foreground))
-                .on_click(() => openOverlay({ mod: "paddock-agents", kind: "popup", width: 200, height: 140, props: { sortMenu: true } }))
+                .on_click(() => openOverlay({ mod: "my-agents", kind: "popup", width: 200, height: 140, props: { sortMenu: true } }))
                 .tooltip(`Sort agents: ${sort.label}`)
                 .child(svg(`mods/workspace-chrome/${sort.icon}.svg`).size(14)),
             ),

@@ -2,9 +2,27 @@
   "id": "root",
   "cloned_from": {
     "name": "main",
-    "version": "0.1.13"
+    "version": "0.1.14"
   },
   "type": "row",
+  "floating": [
+    {
+      "id": "tab-history",
+      "content": {
+        "mod": "tab-history"
+      },
+      "edge": "bottom",
+      "align": "end"
+    },
+    {
+      "id": "floats",
+      "content": {
+        "mod": "floats"
+      },
+      "edge": "bottom",
+      "align": "start"
+    }
+  ],
   "children": [
     {
       "id": "sidebar",
@@ -29,7 +47,7 @@
               "id": "spaces",
               "type": "block",
               "content": {
-                "mod": "paddock-spaces"
+                "mod": "my-spaces"
               },
               "size": {
                 "weight": 1
@@ -40,7 +58,7 @@
               "id": "agents",
               "type": "block",
               "content": {
-                "mod": "paddock-agents"
+                "mod": "my-agents"
               },
               "size": {
                 "weight": 1
@@ -158,30 +176,13 @@
         },
         {
           "id": "status",
-          "type": "row",
+          "type": "block",
+          "content": {
+            "mod": "workspace-status"
+          },
           "size": {
             "px": 28
-          },
-          "resizable": false,
-          "children": [
-            {
-              "id": "status-main",
-              "type": "block",
-              "content": {
-                "mod": "workspace-status"
-              }
-            },
-            {
-              "id": "paddock",
-              "type": "block",
-              "size": {
-                "px": 260
-              },
-              "content": {
-                "mod": "paddock"
-              }
-            }
-          ]
+          }
         }
       ],
       "resizable": false

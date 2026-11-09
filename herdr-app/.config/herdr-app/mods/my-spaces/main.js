@@ -55,7 +55,7 @@ export function tone(t, status) {
 
 export default class Spaces extends View {
   init(_props, cx) {
-    this.spot = new Spotlight(cx, { below: "paddock-agents.spotlight-first" });
+    this.spot = new Spotlight(cx, { below: "my-agents.spotlight-first" });
     this.git = {}; // where() -> { name, branch, ahead, behind, repo, linked }, null: not a repo
     this.checked = {}; // where() -> when it was last looked at
     this.unsure = new Set(); // where()s git couldn't answer for (a machine away)
@@ -503,7 +503,7 @@ export default class Spaces extends View {
       changed = true;
     }
     if (changed) setShared("space.colors", kept);
-    return v_flex().id("paddock-spaces").size_full().min_h(0).bg(t.chrome).text_size(13)
+    return v_flex().id("my-spaces").size_full().min_h(0).bg(t.chrome).text_size(13)
       .track_focus(this.spot.handle)
       .on_key_down((e, cx) => this.spot.key(e, cx, {
         // Show the space, then hand the keyboard to its focused pane.
