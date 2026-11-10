@@ -7,7 +7,7 @@
 
 import { View, div } from "gpui-kit";
 import { v_flex, h_flex } from "gpui-base";
-import { run, props, closeOverlay, openOverlay, notify, theme, spaces, panes, agents, focused, layout, shared, hc, nextCommand } from "herdr";
+import { run, props, closeOverlay, openOverlay, notify, theme, spaces, panes, agents, focused, layout, shared, hc } from "herdr";
 
 const SIDEBAR_STEP = 40;
 
@@ -156,7 +156,6 @@ function sendCtrlA() {
 
 function action(e) {
   if (e.keystroke === "ctrl-a") return sendCtrlA;
-  if (e.key === "tab" && !e.modifiers?.shift) return lastTab;
   const key = ARROWS[e.key] ?? e.key_char ?? e.key;
   if (/^[1-9]$/.test(key)) return () => run("tab.select", { index: Number(key) });
   return KEYS.find(([k]) => k === key)?.[2] ?? null;
@@ -167,11 +166,10 @@ export default class Leader extends View {
     this.handle = cx.focus_handle();
     this.handle.focus();
     cx.timer.after(100, () => this.handle.focus());
-    // keys.json's "mod:leader" also sends Tab here, in case the key never
-    // reaches on_key_down; fire() keeps it to one run either way.
-    cx.spawn(async () => {
-      for (;;) if ((await nextCommand()) === "last") this.fire(lastTab);
-    });
+    // GPUI's own Tab binding moves focus to the next tab stop (e.g. the
+    // changes panel's commit input) before on_key_down sees the key. A
+    // binding scoped to this popup's key context wins over that one.
+    cx.bind_keys([{ keystroke: "tab", action: "leader_last", context: "Leader" }]);
   }
 
   fire(fn) {
@@ -193,6 +191,8 @@ export default class Leader extends View {
         .child(div().flex_1().truncate().text_color(t.muted).child(label));
     return v_flex()
       .id("leader")
+      .key_context("Leader")
+      .on_action("leader_last", () => this.fire(lastTab))
       .track_focus(this.handle)
       .on_key_down((e, cx) => {
         // Modifier presses alone (the shift of `C`) wait for the real key.
